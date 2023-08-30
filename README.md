@@ -1,2 +1,2 @@
-# PixlePixs
+#PixlePixs
 CS 350
