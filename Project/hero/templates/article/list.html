@@ -1,0 +1,38 @@
+{% extends 'theme.html' %}
+
+
+{% block title %}
+Articles
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="row">
+
+    <div class="card col-lg">
+
+        <table class="table table-hover">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+            </tr>
+
+            {% for article in object_list %}
+            <tr>
+                <td><a href="{{ article.pk }}">{{ article.title }}</a></td>
+                <td>{{ article.author}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+        <p>
+            <a href="add" class="btn btn-success m-5">Add New Article</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock content %}

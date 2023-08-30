@@ -1,0 +1,86 @@
+{% extends 'theme.html' %}
+
+
+{% block title %}
+Hero Details
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="row">
+
+    <div class="card col-lg">
+
+        <ul class='nav nav-tabs' role="tablist">
+            <li class="nav-item" role=presentation>
+                <a class="nav-link active" href="#hero-tab" data-mdb-toggle="tab" aria-controls="ex1-tabs-1"
+                    aria-selected="true" aria-controls="#hero-tab" role="tab">Hero Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#article-tab" data-mdb-toggle="tab" aria-controls="ex1-tabs-1"
+                    aria-selected="false" aria-controls="#article-tab" role="tab">Hero Article</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" role="presentation">
+            <div class="tab-pane fade show active" id="hero-tab" role="tabpanel">
+                <div class="card-header person">
+                    HERO
+                </div>
+                <div class="card-body">
+
+
+                    <table class="table">
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ object.name }}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Identity</td>
+                            <td>{{ object.identity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Strengths</td>
+                            <td>{{object.strengths}}</td>
+                        </tr>
+                        <tr>
+                            <td>Weaknessess</td>
+                            <td>{{object.weaknesses}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{object.description}}</td>
+                        </tr>
+                        <tr>
+                            <img src="/media/{{object.image.image}}" alt="" width="200">
+                        </tr>
+                    </table>
+
+                    <p>
+                        <a href="add" class="btn btn-success m-5">Add New Hero</a>
+                        <a href="{{ object.pk }}/" class="btn btn-success m-5">Edit Hero</a>
+                        <a class="btn btn-success m-5" href="{{object.pk}}/delete">Delete Hero</a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="tab-pane fade show active" id="article-tab" role="tabpanel">
+                <div class="card-header person">
+                    Hero Article
+                </div>
+                <div class="card-body">
+
+                    <p>{{object.description}}</p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock content %}

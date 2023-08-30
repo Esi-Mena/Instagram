@@ -1,0 +1,28 @@
+{% extends 'theme.html' %}
+
+{% block title %}
+{{object.title}}
+{% endblock title %}
+{% block content %}
+
+<div class="container m-5">
+
+    <h1 class="text-primary">Message Details</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <div class="card-body">
+                <p class="card-body">
+                    {{object.text}}
+                </p>
+                <a href="/message/" class="card-link">Message List</a>
+                <a href="/message/{{ object.pk }}/" class="card-link">Edit Message</a>
+                <a href="/message/{{ object.pk }}/delete" class="card-link">Delete Message</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
