@@ -1,2 +1,2 @@
-# PixleVibes
+# PixlePixs
 CS 350
