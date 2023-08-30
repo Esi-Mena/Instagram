@@ -1,0 +1,47 @@
+[
+    {
+        "id": 2,
+        "name": "Black Widow",
+        "identity": "Natasha Romanoff",
+        "description": "Spy",
+        "image_id": null,
+        "strengths": "Super Good Spy",
+        "weaknesses": "Human"
+    },
+    {
+        "id": 3,
+        "name": "Captain America",
+        "identity": "Steve Rodgers",
+        "description": "Super Soldier",
+        "image_id": null,
+        "strengths": "Super Strong",
+        "weaknesses": "Range"
+    },
+    {
+        "id": 4,
+        "name": "Hulk",
+        "identity": "Bruce Banner",
+        "description": "Big green and angry",
+        "image_id": null,
+        "strengths": "Strong",
+        "weaknesses": "Angry"
+    },
+    {
+        "id": 5,
+        "name": "Iron Man",
+        "identity": "Tony Stark",
+        "description": "Rich",
+        "image_id": null,
+        "strengths": "Smart and Rich",
+        "weaknesses": "Human"
+    },
+    {
+        "id": 6,
+        "name": "Spiderman",
+        "identity": "Peter Parker",
+        "description": "spiderman",
+        "image_id": null,
+        "strengths": "Super strong",
+        "weaknesses": "can die"
+    }
+]

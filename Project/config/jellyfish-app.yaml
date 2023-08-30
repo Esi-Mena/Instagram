@@ -34,11 +34,11 @@ services:
   github:
     branch: main
     deploy_on_push: true
-    repo: Esi-Mena/Instagram
+    repo: MaxwellSeybert/PythonWebApps
   http_port: 8080
   instance_count: 1
   instance_size_slug: basic-xxs
-  name: Instagram-Project
+  name: pythonwebapps-superhero
   routes:
   - path: /
   run_command: |
@@ -51,8 +51,8 @@ static_sites:
   github:
     branch: main
     deploy_on_push: true
-    repo: Esi-Mena/Instagram
-  name: Instagram-Project-static
+    repo: MaxwellSeybert/PythonWebApps
+  name: pythonwebapps-superhero-static
   routes:
   - path: /static
-  source_dir: Project/static
+  source_dir: Superhero/static
