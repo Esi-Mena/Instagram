@@ -1,2 +1,2 @@
-# Instagram
+# PixleVibes
 CS 350
