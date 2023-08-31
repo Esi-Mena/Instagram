@@ -1,5 +1,5 @@
-##Engineering Report
-##Milestone 1- Code- Esi Mena
+# Engineering Report
+# Milestone 1- Code- Esi Mena
 -What did I do?
 I've established a GitHub repository named "Instagram" as the designated platform for submitting our project, known as "PixlPix." Furthermore, invitations have been extended to each member of the group, affording them the privilege of collaborator access to this repository.
 
