@@ -7,7 +7,7 @@ Choose the technology to use for the project.
 
 ### Web Framework and Language
 
-I selected Django because I have years of experience using it.
+I chose Django because our team has experience with this framework and we're enthusiastic about further enhancing our proficiency and capabilities.
 
 
 ### Status Video 
@@ -18,10 +18,10 @@ I created a summary of the design work completed.  View the video at
 
 ## What I will do for Milestone 2
 
-Show proof point of technology by developing a prototype of the most important feature.
+We will pinpoint the essential features of our project, enabling us to streamline our efforts efficiently. We will also kickstart the implementation process, aiming to have a functional page in place.
 
 
 ## Concerns and Challenges
 
-Demonstrate that Open AI API works.
+Our primary concern and challenge in cloning Instagram using Django is implementing real-time updates effectively.
 
