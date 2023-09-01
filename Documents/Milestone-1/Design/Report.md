@@ -14,4 +14,4 @@
     * Three hours relearning Django.
     * 1 hour of research to identify the benefits of Django and other tools we might need.
 * 5-minute Video Demo
-    * I may record a video later but am skipping it for now
+    * [Milestone 1 - Design](Video.md)
