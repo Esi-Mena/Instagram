@@ -7,7 +7,7 @@ What I did for Milestone One
 - - - - - - - - - - - - - - - - - - -
 Tasks to be done by requirements in Milestone Two
 - - - - - - - - - - - - - - - - - - -
-(to be entered)
+For the next milestone requirements will be outlining the architechture and user interface of PixlPix. This will include a detailed document describing how the application will work without the exact coding detail. The user interface, technology used, and architechture will all be sufficently decided on and described here.
 - - - - - - - - - - - - - - - - - - -
 Challenges
 - - - - - - - - - - - - - - - - - - -
