@@ -19,6 +19,7 @@ Time Investment
 - 1 hour spent writing the project charter
 - 30 minutes spent editing the project charter after the first draft
 - 45 minutes spent writing the meeting summary
+- 30 minutes spent going back through all writen material to refine them and add anything I missed or skipped while writing
 - - - - - - - - - - - - - - - - - - -
 Video
 - - - - - - - - - - - - - - - - - - -
