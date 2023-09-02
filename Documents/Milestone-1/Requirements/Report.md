@@ -15,9 +15,10 @@ My biggest challenge has been writing out a timeline for the project, as I have 
 - - - - - - - - - - - - - - - - - - -
 Time Investment
 - - - - - - - - - - - - - - - - - - -
-1 hour and 30 minutes spent in meetings
-1 hour spent writing the project charter
-30 minutes spent editing the project charter after the first draft
+- 1 hour and 30 minutes spent in meetings
+- 1 hour spent writing the project charter
+- 30 minutes spent editing the project charter after the first draft
+- 45 minutes spent writing the meeting summary
 - - - - - - - - - - - - - - - - - - -
 Video
 - - - - - - - - - - - - - - - - - - -
