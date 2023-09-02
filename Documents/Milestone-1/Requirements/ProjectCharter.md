@@ -14,6 +14,13 @@ Since this is a class project, our primary stakeholder is our professor Mark Sea
 
 Timeline and Budget
 - - - - - - - - - - - - - - - -
-Timeline:
+Timeline: Our timeline will follow the process set by the milestone system used in this assignment, so features will be implimented in tandem with these milestone due dates. In terms of priorities, we're aiming to impliment features in this order:
+- Posting text and images to the site, which will remain on the server even after leaving the page. The chronological feed will be implimented to the necessary extent to test this feature
+- Being able to interact with posts through likes and comments. Sharing may be implimented depending on how we initally impliment the post feature
+- A fully implimented chronological scrolling feed with either pages with a number of posts on them or ideally an infinitely scrolling feed
+- Profiles will be developed throughout the process but at this point logging in and out should be functional along with posts, likes, and comments being associated with their appropriate accounts
+- Tagging will be added last along with searching through tags and automatically generating new ones when users use them
+- After all these features are implimented additional features from Instagram may be considered
+- The structure of the milestone development process means that all of these features will be developed and refined throughout the process
 
 Budget: Our goal is to keep costs under 100 dollars
