@@ -1,0 +1,42 @@
+# User Stories for MVP
+- As a user I want to register an account
+- As a user I want to be able to login and logout
+- As a user I want to be able to recover my password
+- As a user I want to change the email assosiated with my account
+- As a user I want a profile page
+- As a user I want to have a profile picture 
+- As a user I want to have a bio
+- As a user I wamt to be able to delete my account
+- As a user I want to be able to change my profile name
+- As a user I want to upload photos
+- As a user I want to caption my photos
+- As a user I want to be able to see other users posts
+- As a user I want to be able to find new accounts
+- As a user I want to be able to like posts 
+- As a user I want to leave comments on posts
+- As a user I want to follow other users
+- As a user I want to be able to search for other users
+- As a user I want dark mode
+- As a user I want to be able to block other users
+- As a user I want notifications from Pixlpix
+# User Stories for Future Enhancements
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
