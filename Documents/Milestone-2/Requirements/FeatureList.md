@@ -1,0 +1,21 @@
+# List of Features for PixlPix
+- User Registration 
+- Login/Logout functionality
+- Password Recovery
+- Change registration email
+- User Profile Page
+- User Profile Picture (editiable)
+- User Bio (editable)
+- Ability to delete account
+- Ability to change profile name
+- Ability to upload photos
+- Captions for photos
+- A feed to see user posts (followed)
+- A discover feed to find new users 
+- Ablity for posts to be liked
+- Ability for comments to be left on posts
+- Ability to follow other users
+- Search function to find other users
+- Dark Mode
+- Block other users
+- Notifications 
