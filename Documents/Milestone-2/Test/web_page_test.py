@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 url = "https://instagram-production.up.railway.app"  # Replace with your server's URL
 
 # Define the expected text you want to check for on the web page
-expected_text = "Your Expected Text"  # Replace with the text you expect to find
+expected_text = "List of Heroes"  # Replace with the text you expect to find
 
 # Send an HTTP GET request to the URL
 response = requests.get(url)
