@@ -1,3 +1,5 @@
+Data
+- - - - - - - - - - - - - -
 - User
   - Username
   - Password
@@ -25,3 +27,16 @@
 - Feed
   - Posts
   - Users
+- Hashtags
+  - Posts (that have the hashtag in their caption)
+- - - - - - - - - - - - - -
+Views
+- - - - - - - - - - - - - -
+User - Create, update, delete, detail
+Posts - Create, update, delete(?), list, detail
+Feed - Update, detail
+Hashtags - Create, update, list, detail(?)
+- - - - - - - - - - - - - -
+Tests
+- - - - - - - - - - - - - -
+Users and posts are both very complex so they might require more tests. I'm not quite sure how the feed works but if it can be sorted it'll definitely need more tests. Hashtags will need some tests on how they're created and if posts can be deleted or tags can be changed they'll need testing to make sure tags don't break if no posts are in them anymore.
