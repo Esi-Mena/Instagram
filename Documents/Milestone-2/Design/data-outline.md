@@ -32,10 +32,10 @@ Data
 - - - - - - - - - - - - - -
 Views
 - - - - - - - - - - - - - -
-User - Create, update, delete, detail
-Posts - Create, update, delete(?), list, detail
-Feed - Update, detail
-Hashtags - Create, update, list, detail(?)
+- User - Create, update, delete, detail
+- Posts - Create, update, delete(?), list, detail
+- Feed - Update, detail
+- Hashtags - Create, update, list, detail(?)
 - - - - - - - - - - - - - -
 Tests
 - - - - - - - - - - - - - -
