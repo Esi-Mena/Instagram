@@ -1,4 +1,5 @@
 # List of Features for PixlPix
+## Phase 1
 - User Registration 
 - Login/Logout functionality
 - Password Recovery
@@ -19,3 +20,24 @@
 - Dark Mode
 - Block other users
 - Notifications 
+## Phase 2
+- Stories
+- long format videos
+- built in video editor (simmilar to tiktok)
+- multiple accounts and  UI to switch between them easily
+- Product Shop
+- Slideshow posts
+- live stream
+- Direct messaging
+- Private accounts
+- multi language support
+- Language translation
+- Location and Map integration
+- algorithm driven feed
+- snapchat like filters (augmented reality)
+- Age restricted version
+- user analytics
+- collaborative posts
+- Scheduled posts
+- User polls
+- Archived posts

@@ -19,24 +19,24 @@
 - As a user I want dark mode
 - As a user I want to be able to block other users
 - As a user I want notifications from Pixlpix
-# User Stories for Future Enhancements
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
+# User Stories for Future Enhancements 
+- As a user I want to post Stories
+- As a user I want to be able to upload long format videos
+- As a user I want to be able to have a built in video editor (simmilar to tiktok)
+- As a user I want to be able to have multiple accounts and switch between them easily
+- As a user I want to be able to sell products on the platform
+- As a user I want to be able to have multiple images in a single post
+- As a user I want to be able to have a live stream
+- As a user I want to be able to have a messaging feature
+- As a user I want to be able to private my account
+- As a user I want multi language support
+- As a user I want the app to translate posts in another language for me
+- As a user I want to have my posts show up on a map with the tagged location 
+- As a user I want a more algorithm driven feed
+- As a user I want snapchat like filters (augmented reality)
+- As a user I want to have an age restricted version of the app for younger audiences
+- As a user I want to see the analytics of my profile 
+- As a user I want to have collaborative posts
+- As a user I want to schedule future posts
+- As a user I want to have polls on my story
+- As a user I want to archive posts and unarchive them
