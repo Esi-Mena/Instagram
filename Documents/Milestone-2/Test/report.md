@@ -13,4 +13,4 @@ When trying to clone the repository to my visual studio code it was a bit diffic
   3 hours
 
 - 5 Min Video?
-  
+  https://youtu.be/Ik5kHQXkOeM
