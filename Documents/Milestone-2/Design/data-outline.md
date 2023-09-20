@@ -13,7 +13,6 @@ Data
   - Blocked (people who have blocked the user)
   - User posts (tied to user who made them but also a seperate thing)
   - Comments on posts
-  - Whether they have dark mode on or off
   - Notifications (displayed on the hud)
 - Posts
   - Likes (maybe tied to the user who made them)
@@ -27,16 +26,13 @@ Data
 - Feed
   - Posts
   - Users
-- Hashtags
-  - Posts (that have the hashtag in their caption)
 - - - - - - - - - - - - - -
 Views
 - - - - - - - - - - - - - -
 - User - Create, update, delete, detail
-- Posts - Create, update, delete(?), list, detail
+- Posts - Create, update, delete, list, detail
 - Feed - Update, detail
-- Hashtags - Create, update, list, detail(?)
 - - - - - - - - - - - - - -
 Tests
 - - - - - - - - - - - - - -
-Users and posts are both very complex so they might require more tests. I'm not quite sure how the feed works but if it can be sorted it'll definitely need more tests. Hashtags will need some tests on how they're created and if posts can be deleted or tags can be changed they'll need testing to make sure tags don't break if no posts are in them anymore.
+Users and posts are both very complex so they might require more tests. There will be two feeds with one sorted chronologically and the other with only posts by users the user follows so those will need to be tested as well. 
