@@ -7,4 +7,4 @@
 - I thing my biggest concern is that our feature list might be too much. While I do think it is feasable for us to finish all 20 requirements I stated I am worried that certain requirements may be more of a challenge then anticipated. For example I worry that things such as likes, follows, and the two different feeds may end up being more complicated than we are anticipating but I am hoping for the best.
 ### Engineering Investment
 - About 3 hours
-### Video Demo - will add when created
+### Video Demo - https://youtu.be/Kb6PVLz0EpA
