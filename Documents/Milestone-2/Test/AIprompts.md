@@ -17,8 +17,8 @@ from .models import Student**
 4.**Write Test Cases:**
 Create test cases that validate different aspects of the Student model. Here's an example of how to test the "name," "email," and "ID" fields:
 
+![image](https://github.com/Esi-Mena/Instagram/assets/89554958/a25d2b8a-9a28-43a7-97f8-1af5eba0c3f5)
 
-      ![image](https://github.com/Esi-Mena/Instagram/assets/89554958/48492adf-29aa-44f1-8663-fb794f1e1bda)
 
 These test cases include checking if a student can be created with the expected attributes, if the "name" field respects its maximum length, and if the "email" field enforces uniqueness.
 
