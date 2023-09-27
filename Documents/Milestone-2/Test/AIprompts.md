@@ -17,39 +17,8 @@ from .models import Student**
 4.**Write Test Cases:**
 Create test cases that validate different aspects of the Student model. Here's an example of how to test the "name," "email," and "ID" fields:
 
-class StudentModelTest(TestCase):
-    def test_create_student(self):
-        student = Student.objects.create(
-            name="John Doe",
-            email="johndoe@example.com",
-            ID="12345"
-        )
-        self.assertEqual(student.name, "John Doe")
-        self.assertEqual(student.email, "johndoe@example.com")
-        self.assertEqual(student.ID, "12345")
 
-    def test_student_name_max_length(self):
-        student = Student.objects.create(
-            name="A" * 101,  # This exceeds the maximum length
-            email="johndoe@example.com",
-            ID="12345"
-        )
-        self.assertGreater(len(student.name), 100)  # Ensure it's too long
-
-    def test_student_email_unique(self):
-        # Create a student with a unique email
-        student1 = Student.objects.create(
-            name="John Doe",
-            email="unique@example.com",
-            ID="12345"
-        )
-        # Try to create another student with the same email (should raise an error)
-        with self.assertRaises(Exception):
-            Student.objects.create(
-                name="Jane Doe",
-                email="unique@example.com",
-                ID="54321"
-            )
+      ![image](https://github.com/Esi-Mena/Instagram/assets/89554958/48492adf-29aa-44f1-8663-fb794f1e1bda)
 
 These test cases include checking if a student can be created with the expected attributes, if the "name" field respects its maximum length, and if the "email" field enforces uniqueness.
 
