@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user_profile.user.username }}'s Profile</title>
+</head>
+<main>
+    <section class="user-profile">
+        <div class="profile-info">
+            <img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}">
+            <h1>{{ user_profile.user.username }}</h1>
+            <p>{{ user_profile.bio }}</p>
+            <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
+            <!-- Add follow/unfollow button if applicable -->
+        </div>
+
+        <section class="photo-feed">
+            {% for photo in photos %}
+            <div class="photo">
+                <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
+                <p>{{ photo.caption }}</p>
+                <!-- Add like and comment buttons -->
+            </div>
+            {% endfor %}
+        </section>
+    </section>
+</main>
+
+
+{% endblock %}

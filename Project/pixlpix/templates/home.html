@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+<main>
+    <section class="photo-feed">
+        {% for photo in photos %}
+        <div class="photo">
+            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
+            <p>{{ photo.caption }}</p>
+            <!-- Add like and comment buttons -->
+        </div>
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Website{% endblock %}</title>
+    <!-- Add your CSS and JavaScript includes here -->
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'landing' %}">Landing Page</a></li>
+                <li>{% if user.is_authenticated %}
+                    <p><a href="{% url 'logout' %}">Logout</a></p>
+                    {% else %}
+                    <p>
+                        <a href="{% url 'signup' %}">Sign Up</a>.
+                    </p>
+                    {% endif %}
+                </li>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'user_profile' username=user.username %}">Profile</a></li>
+                <li><a href="{% url 'upload_photo' %}">Upload Photo</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <!-- Add user-related actions (e.g., login, logout) here -->
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <!-- Add footer content here -->
+    </footer>
+</body>
+
+</html>
