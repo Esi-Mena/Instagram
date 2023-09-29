@@ -129,3 +129,8 @@ STATIC_ROOT = 'static_assets/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://instagram-production.up.railway.app/'
+]
