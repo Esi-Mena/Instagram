@@ -1,0 +1,2 @@
+# AI prompts -Maxwell Seybert
+This week I mostly used chatgpt to try and help me fix errors and give me a start on writing code I was not sure how to write. It was actually very helpful when fixing an issue I had with the login forms and I fixed this by telling it my issue with the forms and to write me a new one. I had to tweak the code it gave me but that did in fact work. I also used to help me write the tests for our code and fix some of the views. 
