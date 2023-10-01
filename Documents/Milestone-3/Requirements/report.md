@@ -13,4 +13,4 @@ Some challenges were trying to upload the product backlog on github because i co
 Personal: 3 Hours.
 
 - 5 Minute video
-  
+  https://youtu.be/b47EqSp93OY
