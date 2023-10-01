@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial, sans-serif';
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header {
+    background-color: #00b7ff;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+header h1 {
+    margin-bottom: 20px; 
+}
+
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0 0 0; 
+    display: inline-block; 
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 50px; 
+    background-color: #fff; 
+}
+
+nav ul li a:hover {
+    background-color: #dcdcdc; 
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main nav {
+    margin-top: 20px; /* New rule to add space between the nav and the form */
+}
+
+main div {
+    margin-bottom: 20px; /* Adds space between images */
+}
+
+main div img {
+    width: 300px;  /* Sets a fixed width for the images */
+    height: 300px; /* Sets a fixed height for the images */
+}
+
+#profile {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#upload-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: 2px solid #3897f0;
+    border-radius: 50px;
+    background-color: #fff;
+    color: #3897f0;
+    text-align: center;
+}
+
+#upload-button:hover {
+    background-color: #f0f0f0;
+}
