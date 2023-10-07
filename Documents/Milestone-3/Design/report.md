@@ -7,4 +7,4 @@ When initally trying to just create the views in the old project I ran into many
 ## Time Spent
 - 10 hours
 
-## Video - My video software isnt working as my laptop has started having issues, will be made when I get I figure out how to fix it. 
+## Video - https://youtu.be/SnvMV5_s91w
