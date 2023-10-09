@@ -29,3 +29,10 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'text': forms.TextInput(attrs={'placeholder': 'Add a comment...'}),
         }
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Photo
+        fields = ['image', 'caption']
+        widgets = {
+            'caption': forms.Textarea(attrs={'placeholder': 'Add a caption...'}),
+        }

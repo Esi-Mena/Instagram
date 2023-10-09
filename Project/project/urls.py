@@ -5,7 +5,7 @@ from pixlpix import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.landing_view, name='landing'),
-    path('home', views.home, name='home'),
+    path('home/', views.home, name='home'),
     path('profile/<str:username>/', views.user_profile, name='user_profile'),
     path('upload/', views.upload_photo, name='upload_photo'),
     path('photo/<int:photo_id>/', views.photo_detail, name='photo_detail'),
@@ -16,4 +16,10 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
+    path('photos/', views.photo_list, name='photo_list'),
+    path('photos/<int:pk>/update/', views.photo_update, name='photo_update'),
+    path('photos/<int:pk>/delete/', views.photo_delete, name='photo_delete'),
+
+    
+
 ]

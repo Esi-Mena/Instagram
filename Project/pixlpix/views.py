@@ -11,6 +11,8 @@ from .forms import PhotoUploadForm, CommentForm, LoginForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignupForm
+from .forms import PhotoForm
+
 
 def signup_view(request):
     if request.method == 'POST':
@@ -150,3 +152,26 @@ def logout_view(request):
 def landing_view(request):
     return render(request, 'landing.html')
 
+def photo_list(request):
+    photos = Photo.objects.all()
+    return render(request, 'photo_list.html', {'photos': photos})
+
+
+
+def photo_update(request, pk):
+    photo = get_object_or_404(Photo, pk=pk)
+    if request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES, instance=photo)
+        if form.is_valid():
+            form.save()
+            return redirect('photo_detail', pk=photo.pk)
+    else:
+        form = PhotoForm(instance=photo)
+    return render(request, 'photo_update.html', {'form': form, 'photo': photo})
+
+def photo_delete(request, pk):
+    photo = get_object_or_404(Photo, pk=pk)
+    if request.method == 'POST':
+        photo.delete()
+        return redirect('photo_list')
+    return render(request, 'photo_delete.html', {'photo': photo})
