@@ -10,7 +10,7 @@
     <section class="photo-feed">
         {% for photo in photos %}
         <div class="photo">
-            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
+            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%">
             <p>{{ photo.caption }}</p>
             <!-- Add like and comment buttons -->
         </div>
