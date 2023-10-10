@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import UserProfile, Photo, Comment, Like, User
-from .forms import PhotoUploadForm, CommentForm
+from .forms import PhotoUploadForm, CommentForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import PhotoUploadForm, CommentForm, LoginForm
@@ -18,6 +18,9 @@ def signup_view(request):
         if form.is_valid():
             # Create a new user account
             user = form.save()
+
+            # Create a UserProfile for the new user
+            UserProfile.objects.create(user=user)
 
             # Log the user in
             username = form.cleaned_data.get('username')
@@ -33,6 +36,8 @@ def signup_view(request):
 
     return render(request, 'signup.html', {'form': form})
 
+    return render(request, 'signup.html', {'form': form})
+
 @login_required
 def home(request):
     # Retrieve photos and other data here
@@ -42,10 +47,17 @@ def home(request):
 
 @login_required
 def user_profile(request, username):
-    user_profile = get_object_or_404(UserProfile, user__username=username)
+    user = get_object_or_404(User, username=username)
+    user_profile = UserProfile.objects.get(user=user)
+
+    # Get all photos uploaded by the user
+    user_photos = Photo.objects.filter(user=user)
+
     context = {
         'user_profile': user_profile,
+        'user_photos': user_photos,
     }
+
     return render(request, 'user_profile.html', context)
 
 @login_required
@@ -150,3 +162,15 @@ def logout_view(request):
 def landing_view(request):
     return render(request, 'landing.html')
 
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user.userprofile)
+
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', username=request.user.username)
+    else:
+        form = EditProfileForm(instance=request.user.userprofile)
+
+    return render(request, 'edit_profile.html', {'form': form})

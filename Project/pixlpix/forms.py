@@ -1,5 +1,5 @@
 from django import forms
-from .models import Photo, Comment, User
+from .models import Photo, Comment, User, UserProfile
 from django.contrib.auth.forms import UserCreationForm
 
 from django.contrib.auth.forms import AuthenticationForm
@@ -29,3 +29,9 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'text': forms.TextInput(attrs={'placeholder': 'Add a comment...'}),
         }
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['bio', 'website', 'profile_picture']

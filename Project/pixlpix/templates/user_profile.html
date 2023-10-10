@@ -1,34 +1,21 @@
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
 {% block content %}
+<h1>User Profile</h1>
+<p>Username: {{ user_profile.user.username }}</p>
+<p>Email: {{ user_profile.user.email }}</p>
+<p>Bio: {{ user_profile.bio }}</p>
+{% if user_profile.profile_picture %}
+<img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+{% else %}
+<p>No profile picture available</p>
+{% endif %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>{{ user_profile.user.username }}'s Profile</title>
-</head>
-<main>
-    <section class="user-profile">
-        <div class="profile-info">
-            <img src="{{ user_profile.profile_picture.url }}" alt="{{ user_profile.user.username }}">
-            <h1>{{ user_profile.user.username }}</h1>
-            <p>{{ user_profile.bio }}</p>
-            <a href="{{ user_profile.website }}">{{ user_profile.website }}</a>
-            <!-- Add follow/unfollow button if applicable -->
-        </div>
-
-        <section class="photo-feed">
-            {% for photo in photos %}
-            <div class="photo">
-                <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
-                <p>{{ photo.caption }}</p>
-                <!-- Add like and comment buttons -->
-            </div>
-            {% endfor %}
-        </section>
-    </section>
-</main>
-
-
+<h2>Photos by {{ user_profile.user.username }}</h2>
+<ul>
+    {% for photo in user_photos %}
+    <li>
+        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
