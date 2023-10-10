@@ -24,6 +24,11 @@
             <a href="{% url 'signup' %}">Sign Up</a>.
             {% endif %}
 
+            <form method="GET" action="{% url 'search_profiles' %}">
+                <input type="text" name="q" placeholder="Search user profiles">
+                <button type="submit">Search</button>
+            </form>
+
 
 
         </nav>

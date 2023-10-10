@@ -180,3 +180,10 @@ def edit_profile(request):
         form = EditProfileForm(instance=request.user.userprofile)
 
     return render(request, 'edit_profile.html', {'form': form})
+
+def search_profiles(request):
+    query = request.GET.get('q', '')  # Get the search query from the GET parameters
+    results = User.objects.filter(username__icontains=query)
+
+    context = {'results': results, 'query': query}
+    return render(request, 'search_profiles.html', context)

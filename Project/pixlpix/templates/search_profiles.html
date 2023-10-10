@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Search Results for "{{ query }}"</h1>
+
+{% if results %}
+<ul>
+    {% for user in results %}
+    <li><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No results found.</p>
+{% endif %}
+{% endblock %}
