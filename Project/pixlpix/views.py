@@ -11,7 +11,7 @@ from .forms import PhotoUploadForm, CommentForm, LoginForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignupForm
-from .forms import PhotoForm
+
 
 
 def signup_view(request):
