@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import UserProfile, Photo, Comment, Like, User
-from .forms import PhotoUploadForm, CommentForm
+from .forms import PhotoUploadForm, CommentForm, EditProfileForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import PhotoUploadForm, CommentForm, LoginForm
@@ -21,6 +21,9 @@ def signup_view(request):
             # Create a new user account
             user = form.save()
 
+            # Create a UserProfile for the new user
+            UserProfile.objects.create(user=user)
+
             # Log the user in
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
@@ -35,19 +38,29 @@ def signup_view(request):
 
     return render(request, 'signup.html', {'form': form})
 
+    return render(request, 'signup.html', {'form': form})
+
 @login_required
 def home(request):
     # Retrieve photos and other data here
-    photos = Photo.objects.all()  # Replace with actual query
+    photos = Photo.objects.all().order_by('-id')  
     context = {'photos': photos}
     return render(request, 'home.html', context)
 
 @login_required
 def user_profile(request, username):
-    user_profile = get_object_or_404(UserProfile, user__username=username)
+    user = get_object_or_404(User, username=username)
+    user_profile = UserProfile.objects.get(user=user)
+    is_own_profile = (user_profile.user == request.user)
+    # Get all photos uploaded by the user
+    user_photos = Photo.objects.filter(user=user)
+
     context = {
         'user_profile': user_profile,
+        'user_photos': user_photos,
+        'is_own_profile': is_own_profile
     }
+
     return render(request, 'user_profile.html', context)
 
 @login_required
@@ -150,28 +163,29 @@ def logout_view(request):
     return redirect('login')
 
 def landing_view(request):
-    return render(request, 'landing.html')
+    if request.user.is_authenticated:
+        # If the user is logged in, redirect them to the homepage
+        return redirect('home')  # Replace 'home' with the name of your homepage view
+    else:
+        # If the user is not logged in, show the landing page
+        return render(request, 'landing.html')
 
-def photo_list(request):
-    photos = Photo.objects.all()
-    return render(request, 'photo_list.html', {'photos': photos})
-
-
-
-def photo_update(request, pk):
-    photo = get_object_or_404(Photo, pk=pk)
+@login_required
+def edit_profile(request):
     if request.method == 'POST':
-        form = PhotoForm(request.POST, request.FILES, instance=photo)
+        form = EditProfileForm(request.POST, instance=request.user.userprofile)
+
         if form.is_valid():
             form.save()
-            return redirect('photo_detail', pk=photo.pk)
+            return redirect('user_profile', username=request.user.username)
     else:
-        form = PhotoForm(instance=photo)
-    return render(request, 'photo_update.html', {'form': form, 'photo': photo})
+        form = EditProfileForm(instance=request.user.userprofile)
 
-def photo_delete(request, pk):
-    photo = get_object_or_404(Photo, pk=pk)
-    if request.method == 'POST':
-        photo.delete()
-        return redirect('photo_list')
-    return render(request, 'photo_delete.html', {'photo': photo})
+    return render(request, 'edit_profile.html', {'form': form})
+
+def search_profiles(request):
+    query = request.GET.get('q', '')  # Get the search query from the GET parameters
+    results = User.objects.filter(username__icontains=query)
+
+    context = {'results': results, 'query': query}
+    return render(request, 'search_profiles.html', context)

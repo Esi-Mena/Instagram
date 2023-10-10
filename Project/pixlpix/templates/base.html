@@ -10,21 +10,27 @@
 
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'landing' %}">Landing Page</a></li>
-                <li>{% if user.is_authenticated %}
-                    <p><a href="{% url 'logout' %}">Logout</a></p>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'upload_photo' %}">Upload Photo</a></li>
-                {% else %}
-                <p>
-                    <a href="{% url 'signup' %}">Sign Up</a>.
-                </p>
-                {% endif %}
-                </li>
+        <nav style="padding: 1%;">
 
-            </ul>
+            {% if user.is_authenticated %}
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'upload_photo' %}">Upload Photo</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="{% url 'user_profile' request.user.username %}">Profile</a>
+
+
+            {% else %}
+
+            <a href="{% url 'signup' %}">Sign Up</a>.
+            {% endif %}
+
+            <form method="GET" action="{% url 'search_profiles' %}">
+                <input type="text" name="q" placeholder="Search user profiles">
+                <button type="submit">Search</button>
+            </form>
+
+
+
         </nav>
         <div class="user-actions">
             <!-- Add user-related actions (e.g., login, logout) here -->

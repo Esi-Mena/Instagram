@@ -23,4 +23,4 @@ Timeline: Our timeline will follow the process set by the milestone system used 
 - After all these features are implimented additional features from Instagram may be considered
 - The structure of the milestone development process means that all of these features will be developed and refined throughout the process
 
-Budget: Our goal is to keep costs under 100 dollars
+Budget: Assuming an approximately $60 cost for each hour of work, along with an estimated completion time of 500 hours, our first estimate comes at about $30,000. However, the engineers working on this project aren't very experienced with large scale development, and may require more training in the used programs in order to make progress. I estimate this will add about 50 to 75 hours of additional work to the project, increasing the estimate to $33,000 to $34,500 in total.

@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from pixlpix import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -16,10 +18,6 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
-    path('photos/', views.photo_list, name='photo_list'),
-    path('photos/<int:pk>/update/', views.photo_update, name='photo_update'),
-    path('photos/<int:pk>/delete/', views.photo_delete, name='photo_delete'),
-
-    
-
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
