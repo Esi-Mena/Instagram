@@ -41,7 +41,7 @@ def signup_view(request):
 @login_required
 def home(request):
     # Retrieve photos and other data here
-    photos = Photo.objects.all()  # Replace with actual query
+    photos = Photo.objects.all().order_by('-id')  
     context = {'photos': photos}
     return render(request, 'home.html', context)
 
@@ -49,13 +49,14 @@ def home(request):
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     user_profile = UserProfile.objects.get(user=user)
-
+    is_own_profile = (user_profile.user == request.user)
     # Get all photos uploaded by the user
     user_photos = Photo.objects.filter(user=user)
 
     context = {
         'user_profile': user_profile,
         'user_photos': user_photos,
+        'is_own_profile': is_own_profile
     }
 
     return render(request, 'user_profile.html', context)

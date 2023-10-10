@@ -9,7 +9,10 @@
 {% else %}
 <p>No profile picture available</p>
 {% endif %}
+{% if is_own_profile %}
+<!-- If the current user is viewing their own profile, display an Edit button -->
 <a href="{% url 'edit_profile' %}">Edit Profile</a>
+{% endif %}
 <h2>Photos by {{ user_profile.user.username }}</h2>
 <ul>
     {% for photo in user_photos %}
