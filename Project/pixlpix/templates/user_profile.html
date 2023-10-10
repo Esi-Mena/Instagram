@@ -9,7 +9,7 @@
 {% else %}
 <p>No profile picture available</p>
 {% endif %}
-
+<a href="{% url 'edit_profile' %}">Edit Profile</a>
 <h2>Photos by {{ user_profile.user.username }}</h2>
 <ul>
     {% for photo in user_photos %}

@@ -160,7 +160,12 @@ def logout_view(request):
     return redirect('login')
 
 def landing_view(request):
-    return render(request, 'landing.html')
+    if request.user.is_authenticated:
+        # If the user is logged in, redirect them to the homepage
+        return redirect('home')  # Replace 'home' with the name of your homepage view
+    else:
+        # If the user is not logged in, show the landing page
+        return render(request, 'landing.html')
 
 @login_required
 def edit_profile(request):
