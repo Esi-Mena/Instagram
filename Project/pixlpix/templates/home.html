@@ -11,10 +11,12 @@
         {% for photo in photos %}
         <div class="photo">
             <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%">
-            <p>{{ photo.caption }}</p>
-            <!-- Add like and comment buttons -->
+            <p>Caption: {{ photo.caption }}</p>
+            <p>Uploaded by: <a href="{% url 'user_profile' username=photo.user.username %}"> {{ photo.user.username}}
+                </a></p>
         </div>
         {% endfor %}
+
     </section>
 </main>
 
