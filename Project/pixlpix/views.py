@@ -38,8 +38,6 @@ def signup_view(request):
 
     return render(request, 'signup.html', {'form': form})
 
-    return render(request, 'signup.html', {'form': form})
-
 @login_required
 def home(request):
     # Retrieve photos and other data here
