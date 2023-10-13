@@ -1,0 +1,2 @@
+# AI prompts Milestone 4 - Maxwell Seybert
+I mostly used chat gpt to help me add features I was not sure how to add myself and fix errors. A good example of this is the search feature. The search feature was something I was not fammilar with and I used chat gpt to help me develop it. An exampleof an error  I fixed using chat gpt was the erorr of photos not appearing in the home feed and it gave me a good line of code to add to my urls file that helped the pictues appear. 
