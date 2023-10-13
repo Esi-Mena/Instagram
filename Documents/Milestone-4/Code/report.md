@@ -1,6 +1,6 @@
 # Milestone 4 - Maxwell Seybert
 ## What did I do
-This week I worked on addin all of the core features. The following features are all functional in our app. 
+This week I worked on adding all of the core features. The following features are all functional in our app. 
 - User Creation
 - User Profile
 - User Profile editing
