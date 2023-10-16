@@ -84,5 +84,11 @@ Develop a notification system to inform users of new likes, comments, follows, a
 **Assignee:** TBD  
 **Estimated Hours:** 40  
 **Due Date:** End of Sprint 4  
-**Description:**  
+**  
 Ensure users are promptly made aware of interactions on their posts and profiles, such as comments, likes, and new followers.
+
+## Burn down graph 
+
+
+
+
