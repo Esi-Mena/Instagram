@@ -6,6 +6,6 @@
 ## Challenges
 - 
 ## Time Spent
-- 6 hours 
+- 8 hours 
 ## Video
 - 
