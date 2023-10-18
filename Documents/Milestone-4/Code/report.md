@@ -33,4 +33,4 @@ The biggest issue we currently face is hosting. At the start of this milestone o
 ## Time Spent
 - 9.5 hours
 
-## Video - Will add after recording. Still trying to find a reliable recording software. 
+## Video - https://youtu.be/2E_O_Vftl3A Video got cut a little short because my surroundings got loud but I covered all main points of the work I did and how we need to move forward. 
