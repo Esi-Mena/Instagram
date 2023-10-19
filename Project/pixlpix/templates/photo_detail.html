@@ -8,9 +8,15 @@
         <div class="photo">
             <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
             <p>{{ photo.caption }}</p>
+            <p>Likes: {{ photo.likes.count }}</p>
+            <a href="{% url 'unlike_photo' photo_id=photo.id %} "style="color: white;">
+                Unlike...
+            </a>
+            <a href="{% url 'like_photo' photo_id=photo.id %} "style="color: white;">
+                Like!
+            </a>
             <!-- Add like and comment buttons -->
         </div>
-
         <section class="comments">
             {% for comment in comments %}
             <div class="comment">
