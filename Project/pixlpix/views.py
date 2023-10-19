@@ -104,7 +104,7 @@ def photo_detail(request, photo_id):
 @login_required
 def like_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
-
+    photo.liked_photos.add(request.user)
     # Add logic to handle liking the photo (e.g., add the user to the liked_photos ManyToMany field)
 
     # Redirect back to the photo detail page or another appropriate URL
