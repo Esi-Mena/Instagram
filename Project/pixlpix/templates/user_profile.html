@@ -13,6 +13,8 @@
         {% if is_own_profile %}
         <!-- If the current user is viewing their own profile, display an Edit button -->
         <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+        {% else %}
+        <a href="{% url 'follow_user' username=user.username %}">Follow</a>
         {% endif %}
     </div>
 </div>

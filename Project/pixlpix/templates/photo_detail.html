@@ -9,12 +9,15 @@
             <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
+            {% if photo.likes.filter(id=request.user.id).exists %}
             <a href="{% url 'unlike_photo' photo_id=photo.id %} "style="color: white;">
                 Unlike...
             </a>
+            {% else %}
             <a href="{% url 'like_photo' photo_id=photo.id %} "style="color: white;">
                 Like!
             </a>
+            {% endif %}
             <!-- Add like and comment buttons -->
         </div>
         <section class="comments">
