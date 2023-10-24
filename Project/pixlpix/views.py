@@ -38,8 +38,6 @@ def signup_view(request):
 
     return render(request, 'signup.html', {'form': form})
 
-    return render(request, 'signup.html', {'form': form})
-
 @login_required
 def home(request):
     # Retrieve photos and other data here
@@ -106,7 +104,7 @@ def photo_detail(request, photo_id):
 @login_required
 def like_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
-
+    photo.likes.add(request.user)
     # Add logic to handle liking the photo (e.g., add the user to the liked_photos ManyToMany field)
 
     # Redirect back to the photo detail page or another appropriate URL
@@ -115,7 +113,7 @@ def like_photo(request, photo_id):
 @login_required
 def unlike_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
-
+    photo.likes.remove(request.user)
     # Add logic to handle unliking the photo (e.g., remove the user from the liked_photos ManyToMany field)
 
     # Redirect back to the photo detail page or another appropriate URL
@@ -124,7 +122,7 @@ def unlike_photo(request, photo_id):
 @login_required
 def follow_user(request, username):
     user_to_follow = get_object_or_404(UserProfile, user__username=username)
-
+    user_to_follow.followers.add(request.user)
     # Add logic to handle following the user (e.g., add the user_to_follow to the followers ManyToMany field)
 
     # Redirect back to the user's profile page or another appropriate URL
@@ -133,7 +131,7 @@ def follow_user(request, username):
 @login_required
 def unfollow_user(request, username):
     user_to_unfollow = get_object_or_404(UserProfile, user__username=username)
-
+    user_to_unfollow.followers.remove(request.user)
     # Add logic to handle unfollowing the user (e.g., remove the user_to_unfollow from the followers ManyToMany field)
 
     # Redirect back to the user's profile page or another appropriate URL
@@ -168,7 +166,7 @@ def landing_view(request):
         return redirect('home')  # Replace 'home' with the name of your homepage view
     else:
         # If the user is not logged in, show the landing page
-        return render(request, 'landing.html')
+        return redirect('login')
 
 @login_required
 def edit_profile(request):

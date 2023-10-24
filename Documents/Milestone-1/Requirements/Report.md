@@ -20,7 +20,8 @@ Time Investment
 - 30 minutes spent editing the project charter after the first draft
 - 45 minutes spent writing the meeting summary
 - 30 minutes spent going back through all writen material to refine them and add anything I missed or skipped while writing
+- 1 hour spent on making the milestone video due to rerecording, editing, and relearning the software I was using after a major update.
 - - - - - - - - - - - - - - - - - - -
 Video
 - - - - - - - - - - - - - - - - - - -
-(link)
+https://youtu.be/5YlZ-GjNatg

@@ -1,24 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>User Profile</h1>
-<p>Username: {{ user_profile.user.username }}</p>
-<p>Email: {{ user_profile.user.email }}</p>
-<p>Bio: {{ user_profile.bio }}</p>
 {% if user_profile.profile_picture %}
-<img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture">
+<img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%">
 {% else %}
-<p>No profile picture available</p>
+
 {% endif %}
-{% if is_own_profile %}
-<!-- If the current user is viewing their own profile, display an Edit button -->
-<a href="{% url 'edit_profile' %}">Edit Profile</a>
-{% endif %}
-<h2>Photos by {{ user_profile.user.username }}</h2>
-<ul>
+<div class="row">
+    <div class="col-9">
+        <h1>{{ user_profile.user.username }}</h1>
+    </div>
+    <div class="col">
+        {% if is_own_profile %}
+        <!-- If the current user is viewing their own profile, display an Edit button -->
+        <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+        {% else %}
+        <a href="{% url 'follow_user' username=user.username %}">Follow</a>
+        {% endif %}
+    </div>
+</div>
+
+<p>{{ user_profile.user.email }}</p>
+<p>{{ user_profile.bio }}</p>
+<h2>{{ user_profile.user.username }}'s posts</h2>
+<div class="row">
     {% for photo in user_photos %}
-    <li>
-        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
-    </li>
+    <div class="col-4">
+        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
+    </div>
+
     {% endfor %}
-</ul>
+</div>
+
+
 {% endblock %}

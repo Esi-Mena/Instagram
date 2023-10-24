@@ -10,8 +10,8 @@
     {{ form.username }}
     {{ form.password.label_tag }}
     {{ form.password }}
-    <button type="submit">Log In</button>
+    <button type="submit" class="btn btn-primary">Log In</button>
 </form>
 
-<p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+<p>Don't have an account? <a href="{% url 'signup' %}" class="btn btn-primary">Sign up</a></p>
 {% endblock %}

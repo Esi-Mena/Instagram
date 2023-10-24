@@ -17,7 +17,12 @@ urlpatterns = [
     path('unfollow/<str:username>/', views.unfollow_user, name='unfollow_user'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+    path('edit-profile/', views.edit_profile, name='edit_profile'),
     path('signup/', views.signup_view, name='signup'),
+    
+    path('search_profiles/', views.search_profiles, name='search_profiles'),
 ]
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
