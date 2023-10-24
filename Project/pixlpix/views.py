@@ -12,6 +12,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignupForm
 
+from .models import Photo
+from .forms import PhotoEditForm
 
 
 def signup_view(request):
@@ -187,3 +189,30 @@ def search_profiles(request):
 
     context = {'results': results, 'query': query}
     return render(request, 'search_profiles.html', context)
+
+def edit_photo(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id, user=request.user)
+    if request.method == 'POST':
+        form = PhotoEditForm(request.POST, instance=photo)
+        if form.is_valid():
+            form.save()
+            return redirect('photo_detail', photo_id=photo.id)  # Redirect to the photo detail page
+    else:
+        form = PhotoEditForm(instance=photo)
+    return render(request, 'edit_photo.html', {'form': form, 'photo': photo})
+
+def delete_photo(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id, user=request.user)
+    
+    if request.method == 'POST':
+        # Ensure that the user is the owner of the photo
+        if photo.user == request.user:
+            photo.delete()
+            # Redirect to the user's profile page after successful deletion
+            return redirect('user_profile', username=request.user.username)
+        else:
+            # User is not authorized to delete this photo
+            return render(request, 'unauthorized_delete.html')
+        
+    context = {'photo': photo}
+    return render(request, 'delete_photo.html', context)

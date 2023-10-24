@@ -9,7 +9,7 @@
             <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
-            {% if photo.likes.filter(id=request.user.id).exists %}
+            {% if request.user in photo.likes.all %}
             <a href="{% url 'unlike_photo' photo_id=photo.id %} "style="color: white;">
                 Unlike...
             </a>
