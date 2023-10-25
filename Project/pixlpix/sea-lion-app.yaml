@@ -19,10 +19,10 @@ name: sea-lion-app
 region: nyc
 services:
 - environment_slug: python
-envs:
-- key: Disable_COLLECTSTATIC
-  scope: RUN_AND_BUILD_TIME
-  value: "1"
+  envs:
+  - key: Disable_COLLECTSTATIC
+    scope: RUN_AND_BUILD_TIME
+    value: "1"
   github:
     branch: main
     deploy_on_push: true
