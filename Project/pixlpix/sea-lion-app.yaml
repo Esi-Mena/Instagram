@@ -11,7 +11,7 @@ ingress:
       path:
         prefix: /
   - component:
-      name: instagram-project
+      name: sea-lion-app-static
     match:
       path:
         prefix: /static
