@@ -6,7 +6,7 @@ features:
 ingress:
   rules:
   - component:
-      name: pixlpix
+      name: sea-lion-app
     match:
       path:
         prefix: /
@@ -19,6 +19,10 @@ name: sea-lion-app
 region: nyc
 services:
 - environment_slug: python
+envs:
+- key: Disable_COLLECTSTATIC
+  scope: RUN_AND_BUILD_TIME
+  value: "1"
   github:
     branch: main
     deploy_on_push: true
@@ -26,13 +30,13 @@ services:
   http_port: 8080
   instance_count: 1
   instance_size_slug: basic-xxs
-  name: pixlpix
+  name: sea-lion-app
   run_command: |
     python manage.py migrate --no-input
     gunicorn --worker-tmp /dev/shm/ project.wsgi
   source_dir: Project
 static_sites:
-- environment_slug: python
+- environment_slug: html
   github:
     branch: main
     deploy_on_push: true
