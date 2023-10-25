@@ -6,15 +6,15 @@
 <main>
     <section class="photo-detail">
         <div class="photo">
-            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}">
+            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%">
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
-            {% if photo.likes.filter(id=request.user.id).exists %}
-            <a href="{% url 'unlike_photo' photo_id=photo.id %} "style="color: white;">
+            {% if request.user in photo.likes.all %}
+            <a href="{% url 'unlike_photo' photo_id=photo.id %} " style="color: white;">
                 Unlike...
             </a>
             {% else %}
-            <a href="{% url 'like_photo' photo_id=photo.id %} "style="color: white;">
+            <a href="{% url 'like_photo' photo_id=photo.id %} " style="color: white;">
                 Like!
             </a>
             {% endif %}

@@ -26,6 +26,10 @@
     {% for photo in user_photos %}
     <div class="col-4">
         <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
+        <p>{{ photo.caption }}</p>
+        {% if is_own_profile %}
+        <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
+        {% endif %}
     </div>
 
     {% endfor %}
