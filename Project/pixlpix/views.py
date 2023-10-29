@@ -12,6 +12,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignupForm
 
+from .models import Photo
+from .forms import PhotoEditForm
 
 
 def signup_view(request):
@@ -104,7 +106,7 @@ def photo_detail(request, photo_id):
 @login_required
 def like_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
-    photo.liked_photos.add(request.user)
+    photo.likes.add(request.user)
     # Add logic to handle liking the photo (e.g., add the user to the liked_photos ManyToMany field)
 
     # Redirect back to the photo detail page or another appropriate URL
@@ -113,7 +115,7 @@ def like_photo(request, photo_id):
 @login_required
 def unlike_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
-
+    photo.likes.remove(request.user)
     # Add logic to handle unliking the photo (e.g., remove the user from the liked_photos ManyToMany field)
 
     # Redirect back to the photo detail page or another appropriate URL
@@ -122,7 +124,7 @@ def unlike_photo(request, photo_id):
 @login_required
 def follow_user(request, username):
     user_to_follow = get_object_or_404(UserProfile, user__username=username)
-
+    user_to_follow.followers.add(request.user)
     # Add logic to handle following the user (e.g., add the user_to_follow to the followers ManyToMany field)
 
     # Redirect back to the user's profile page or another appropriate URL
@@ -131,7 +133,7 @@ def follow_user(request, username):
 @login_required
 def unfollow_user(request, username):
     user_to_unfollow = get_object_or_404(UserProfile, user__username=username)
-
+    user_to_unfollow.followers.remove(request.user)
     # Add logic to handle unfollowing the user (e.g., remove the user_to_unfollow from the followers ManyToMany field)
 
     # Redirect back to the user's profile page or another appropriate URL
@@ -169,17 +171,25 @@ def landing_view(request):
         return redirect('login')
 
 @login_required
+
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user.userprofile)
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)  # Include request.FILES for image upload
 
         if form.is_valid():
+            # Save the uploaded profile picture
+            request.user.userprofile.profile_picture = form.cleaned_data['profile_picture']
+            request.user.userprofile.save()
+            
+            # Save the form
             form.save()
             return redirect('user_profile', username=request.user.username)
     else:
         form = EditProfileForm(instance=request.user.userprofile)
 
-    return render(request, 'edit_profile.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'edit_profile.html', context)
+
 
 def search_profiles(request):
     query = request.GET.get('q', '')  # Get the search query from the GET parameters
@@ -187,3 +197,30 @@ def search_profiles(request):
 
     context = {'results': results, 'query': query}
     return render(request, 'search_profiles.html', context)
+
+def edit_photo(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id, user=request.user)
+    if request.method == 'POST':
+        form = PhotoEditForm(request.POST, instance=photo)
+        if form.is_valid():
+            form.save()
+            return redirect('photo_detail', photo_id=photo.id)  # Redirect to the photo detail page
+    else:
+        form = PhotoEditForm(instance=photo)
+    return render(request, 'edit_photo.html', {'form': form, 'photo': photo})
+
+def delete_photo(request, photo_id):
+    photo = get_object_or_404(Photo, id=photo_id, user=request.user)
+    
+    if request.method == 'POST':
+        # Ensure that the user is the owner of the photo
+        if photo.user == request.user:
+            photo.delete()
+            # Redirect to the user's profile page after successful deletion
+            return redirect('user_profile', username=request.user.username)
+        else:
+            # User is not authorized to delete this photo
+            return render(request, 'unauthorized_delete.html')
+        
+    context = {'photo': photo}
+    return render(request, 'delete_photo.html', context)

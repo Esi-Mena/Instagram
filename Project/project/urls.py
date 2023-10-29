@@ -21,6 +21,9 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     
     path('search_profiles/', views.search_profiles, name='search_profiles'),
+
+     path('edit_photo/<int:photo_id>/', views.edit_photo, name='edit_photo'),
+     path('delete_photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
 ]
 
 
