@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pixlpix',
+    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -130,7 +132,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://instagram-production.up.railway.app/'
-]
