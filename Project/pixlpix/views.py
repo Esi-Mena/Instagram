@@ -171,17 +171,25 @@ def landing_view(request):
         return redirect('login')
 
 @login_required
+
 def edit_profile(request):
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user.userprofile)
+        form = EditProfileForm(request.POST, request.FILES, instance=request.user.userprofile)  # Include request.FILES for image upload
 
         if form.is_valid():
+            # Save the uploaded profile picture
+            request.user.userprofile.profile_picture = form.cleaned_data['profile_picture']
+            request.user.userprofile.save()
+            
+            # Save the form
             form.save()
             return redirect('user_profile', username=request.user.username)
     else:
         form = EditProfileForm(instance=request.user.userprofile)
 
-    return render(request, 'edit_profile.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'edit_profile.html', context)
+
 
 def search_profiles(request):
     query = request.GET.get('q', '')  # Get the search query from the GET parameters
