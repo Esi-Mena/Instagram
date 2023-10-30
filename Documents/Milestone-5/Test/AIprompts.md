@@ -1,0 +1,2 @@
+# AI prompts - Maxwell Seybert
+This week I did not use Chat GPT very much but I did use it to ask how to find our test coverage. It gave me four different ways to find the test coverage. I found using the coverage library was the easiest. 
