@@ -3,43 +3,45 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-    {% if user_profile.profile_picture %}
-    <div class="profile-picture"></div>
-        <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%" style="border-radius: 50%; max-width: 100px;">
+            {% if user_profile.profile_picture %}
+            <div class="profile-picture"></div>
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%"
+                style="border-radius: 50%; max-width: 100px;">
 
-    </div>
-{% else %}
-
-{% endif %}
-<div class="row">
-    <div class="col-9">
-        <h1>{{ user_profile.user.username }}</h1>
-    </div>
-    <div class="col">
-        {% if is_own_profile %}
-        <!-- If the current user is viewing their own profile, display an Edit button -->
-        <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+        </div>
         {% else %}
-        <a href="{% url 'follow_user' username=user.username %}">Follow</a>
+
         {% endif %}
-    </div>
-</div>
+        <div class="row">
+            <div class="col-9">
+                <h1>{{ user_profile.user.username }}</h1>
+            </div>
+            <div class="col">
+                {% if is_own_profile %}
+                <!-- If the current user is viewing their own profile, display an Edit button -->
+                <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+                {% else %}
+                <a href="{% url 'follow_user' username=user.username %}">Follow</a>
+                {% endif %}
+            </div>
+        </div>
 
-<p>{{ user_profile.user.email }}</p>
-<p>{{ user_profile.bio }}</p>
-<h2>{{ user_profile.user.username }}'s posts</h2>
-<div class="row">
-    {% for photo in user_photos %}
-    <div class="col-4">
-        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
-        <p>{{ photo.caption }}</p>
-        {% if is_own_profile %}
-        <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
-        {% endif %}
-    </div>
+        <p>{{ user_profile.user.email }}</p>
+        <p>{{ user_profile.bio }}</p>
+        <p>Followers: {{ user_profile.followers.count }}</p>
+        <h2>{{ user_profile.user.username }}'s posts</h2>
+        <div class="row">
+            {% for photo in user_photos %}
+            <div class="col-4">
+                <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
+                <p>{{ photo.caption }}</p>
+                {% if is_own_profile %}
+                <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
+                {% endif %}
+            </div>
 
-    {% endfor %}
-</div>
+            {% endfor %}
+        </div>
 
 
-{% endblock %}
+        {% endblock %}
