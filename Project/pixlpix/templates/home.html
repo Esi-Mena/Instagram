@@ -17,10 +17,22 @@
                     </a>
                 </li>
                 <li class="list-group-item"><img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%"></li>
+                <li class="list-group-item">
+                    <!-- {% if request.user in photo.likes.all %}
+                    <a href="{% url 'unlike_photo' photo_id=photo.id %} " class="btn btn-dark">
+                        Unlike
+                    </a>
+                    {% else %}
+                    <a href="{% url 'like_photo' photo_id=photo.id %} " class="btn btn-dark">
+                        Like!
+                    </a>
+                    {% endif %} -->
+                    <p>{{ photo.likes.count }} Like(s)</p>
+                </li>
                 <li class="list-group-item">{{ photo.caption }}</li>
                 <li class="list-group-item">
-                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                        Checkout Profile
+                    <a href="{% url 'photo_detail' photo_id=photo.id %}" class="btn btn-dark">
+                        Photo Details
                     </a>
                 </li>
             </ul>
