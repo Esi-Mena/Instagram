@@ -21,7 +21,11 @@
                 <!-- If the current user is viewing their own profile, display an Edit button -->
                 <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
                 {% else %}
-                <a href="{% url 'follow_user' username=user.username %}">Follow</a>
+                {% if request.user in user_profile.followers.all %}
+                <a href="{% url 'unfollow_user' username=user_profile.user.username%}">Unfollow</a>
+                {% else %}
+                <a href="{% url 'follow_user' username=user_profile.user.username %}">Follow</a>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
