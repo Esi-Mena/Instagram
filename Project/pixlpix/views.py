@@ -112,6 +112,7 @@ def like_photo(request, photo_id):
     # Redirect back to the photo detail page or another appropriate URL
     return redirect('photo_detail', photo_id=photo_id)
 
+
 @login_required
 def unlike_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
@@ -224,3 +225,12 @@ def delete_photo(request, photo_id):
         
     context = {'photo': photo}
     return render(request, 'delete_photo.html', context)
+
+@login_required
+def like_photo_homepage(request, photo_id):
+    photo = get_object_or_404(Photo, pk=photo_id)
+    photo.likes.add(request.user)
+    # Add logic to handle liking the photo (e.g., add the user to the liked_photos ManyToMany field)
+
+    # Redirect back to the homepage or another appropriate URL
+    return redirect('home')

@@ -3,6 +3,7 @@ from django.urls import path, include
 from pixlpix import views
 from django.conf import settings
 from django.conf.urls.static import static
+from pixlpix.views import like_photo_homepage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +25,7 @@ urlpatterns = [
 
      path('edit_photo/<int:photo_id>/', views.edit_photo, name='edit_photo'),
      path('delete_photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
+     path('like_photo_homepage/<int:photo_id>/', like_photo_homepage, name='like_photo_homepage'),
 ]
 
 
