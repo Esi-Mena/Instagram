@@ -112,6 +112,7 @@ def like_photo(request, photo_id):
     # Redirect back to the photo detail page or another appropriate URL
     return redirect('photo_detail', photo_id=photo_id)
 
+
 @login_required
 def unlike_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)

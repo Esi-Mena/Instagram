@@ -19,7 +19,7 @@ class Photo(models.Model):
     caption = models.TextField(default='')
     created_at = models.DateTimeField(auto_now_add=True)  # Automatically set the creation timestamp
     likes = models.ManyToManyField(User, related_name='liked_photos', blank=True)
-
+   
     def __str__(self):
         return f"Photo by {self.user.username}"
 
