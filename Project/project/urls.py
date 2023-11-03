@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.landing_view, name='landing'),
     path('home/', views.home, name='home'),
+    path('following/', views.following_view, name='following_feed'),
     path('profile/<str:username>/', views.user_profile, name='user_profile'),
     path('upload/', views.upload_photo, name='upload_photo'),
     path('photo/<int:photo_id>/', views.photo_detail, name='photo_detail'),

@@ -21,6 +21,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
+                    <a href="{% url 'following_feed' %}" class='nav-link'>Following</a>
                     <a href="{% url 'upload_photo' %}" class='nav-link'>Upload</a>
                     <a href="{% url 'logout' %}" class='nav-link'>Logout</a>
                     <a href="{% url 'user_profile' request.user.username %}" class='nav-link'>Profile</a>

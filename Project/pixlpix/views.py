@@ -48,6 +48,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 @login_required
+def following_view(request):
+    current_user_profile = get_object_or_404(UserProfile, user=request.user)
+    following_users = current_user_profile.following.all()
+    photos = Photo.objects.filter(user__in=following_users).order_by('-id')
+    return render(request, 'home.html', {'photos': photos})
+
+
+@login_required
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     user_profile = UserProfile.objects.get(user=user)
@@ -125,21 +133,24 @@ def unlike_photo(request, photo_id):
 @login_required
 def follow_user(request, username):
     user_to_follow = get_object_or_404(UserProfile, user__username=username)
-    user_to_follow.followers.add(request.user)
-    # Add logic to handle following the user (e.g., add the user_to_follow to the followers ManyToMany field)
+    requesting_user_profile = request.user.userprofile
 
-    # Redirect back to the user's profile page or another appropriate URL
+    if user_to_follow.user != request.user:
+        user_to_follow.followers.add(request.user)
+        requesting_user_profile.following.add(user_to_follow.user)
+        
     return redirect('user_profile', username=username)
 
 @login_required
 def unfollow_user(request, username):
     user_to_unfollow = get_object_or_404(UserProfile, user__username=username)
-    user_to_unfollow.followers.remove(request.user)
-    # Add logic to handle unfollowing the user (e.g., remove the user_to_unfollow from the followers ManyToMany field)
+    requesting_user_profile = request.user.userprofile
 
-    # Redirect back to the user's profile page or another appropriate URL
+    if user_to_unfollow.user != request.user:
+        user_to_unfollow.followers.remove(request.user)
+        requesting_user_profile.following.remove(user_to_unfollow.user)
+    
     return redirect('user_profile', username=username)
-
 def login_view(request):
 
     if request.method == 'POST':
