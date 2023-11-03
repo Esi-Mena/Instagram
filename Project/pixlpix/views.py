@@ -55,7 +55,7 @@ def following_view(request):
     return render(request, 'home.html', {'photos': photos})
 
 
-@login_required
+
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     user_profile = UserProfile.objects.get(user=user)
@@ -71,7 +71,7 @@ def user_profile(request, username):
 
     return render(request, 'user_profile.html', context)
 
-@login_required
+
 def upload_photo(request):
     if request.method == 'POST':
         form = PhotoUploadForm(request.POST, request.FILES)
@@ -88,7 +88,7 @@ def upload_photo(request):
     context = {'form': form}
     return render(request, 'upload_photo.html', context)
 
-@login_required
+
 def photo_detail(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
     comments = Comment.objects.filter(photo=photo)
@@ -111,7 +111,7 @@ def photo_detail(request, photo_id):
     return render(request, 'photo_detail.html', context)
 
 
-@login_required
+
 def like_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
     photo.likes.add(request.user)

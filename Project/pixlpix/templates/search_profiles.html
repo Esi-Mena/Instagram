@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
 <h1>Search Results for "{{ query }}"</h1>
 
 {% if results %}
@@ -11,5 +13,12 @@
 </ul>
 {% else %}
 <p>No results found.</p>
+{% endif %}
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
+
 {% endif %}
 {% endblock %}

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Photo</title>
-</head>
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
 <body>
     <h1>Update Photo</h1>
 
@@ -14,4 +14,11 @@
         <button type="submit">Update</button>
     </form>
 </body>
-</html>
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
+
+{% endif %}
+{% block content %}
