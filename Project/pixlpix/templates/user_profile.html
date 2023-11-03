@@ -36,8 +36,10 @@
         <h2>{{ user_profile.user.username }}'s posts</h2>
         <div class="row">
             {% for photo in user_photos %}
-            <div class="col-4">
-                <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
+            <div class="col-10">
+                <a href="{% url 'photo_detail' photo_id=photo.id %}" class="btn btn-dark">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="100%">
+                </a>
                 <p>{{ photo.caption }}</p>
                 {% if is_own_profile %}
                 <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
