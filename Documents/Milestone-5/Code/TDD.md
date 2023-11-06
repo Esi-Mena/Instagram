@@ -38,20 +38,25 @@
    - Time: 10 min
      
 **Iteration 3: Deleting a photo**
+
 1. Implement a delete button in profile
-   -Description: I added a delete button positioned under every photo next to the editing button.
-   -Result: Fail(I still need to implement code for this to work)
-   -Time: 10 min
+   - Description: I added a delete button positioned under every photo next to the editing button.
+   - Result: Fail(I still need to implement code for this to work)
+   - Time: 10 min
+   
 2. Implement views
-   -Description: I added a delete_photo views to start my process of getting the button to work.
-   -Result: Fail(I need to add the url)
-   -Time: 20 min
+   - Description: I added a delete_photo views to start my process of getting the button to work.
+   - Result: Fail(I need to add the url)
+   - Time: 20 min
 3. Implement url
-   -Description:I added the delete photo url
-   -Result: Pass(users can delete a photo from there profile)
-   -Time:10 min
+   - Description:I added the delete photo url
+   - Result: Pass(users can delete a photo from there profile)
+   - Time:10 min
+     
 **Iteration 4: Adding a profile pictured**
+
 1. Implement profile picture
-   -Description: I added code to the user profile html to for them to upload and udjusted until the profile pic was the right size and spot
-   -Result: Pass(Users can upload there own profile pic
-   -Time: 40 min
+   
+   - Description: I added code to the user profile html to for them to upload and udjusted until the profile pic was the right size and spot
+   - Result: Pass(Users can upload there own profile pic
+   - Time: 40 min
