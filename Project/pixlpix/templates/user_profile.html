@@ -24,17 +24,27 @@
                 <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
                 {% else %}
                 {% if request.user in user_profile.followers.all %}
-                <a href="{% url 'unfollow_user' username=user_profile.user.username%}">Unfollow</a>
+                <a href="{% url 'unfollow_user' username=user_profile.user.username%}"
+                    class='btn btn-primary'>Unfollow</a>
                 {% else %}
-                <a href="{% url 'follow_user' username=user_profile.user.username %}">Follow</a>
+                <a href="{% url 'follow_user' username=user_profile.user.username %}" class='btn btn-primary'>Follow</a>
                 {% endif %}
                 {% endif %}
+
+
+
             </div>
         </div>
 
         <p>{{ user_profile.user.email }}</p>
         <p>{{ user_profile.bio }}</p>
-        <p>Followers: {{ user_profile.followers.count }}</p>
+        <p>
+            <!-- Within the user's profile template -->
+            <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers :
+                {{user_profile.followers.count }}</a>
+
+
+        </p>
         <h2>{{ user_profile.user.username }}'s posts</h2>
         <div class="row">
             {% for photo in user_photos %}

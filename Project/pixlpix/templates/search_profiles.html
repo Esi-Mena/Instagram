@@ -6,9 +6,10 @@
 <h1>Search Results for "{{ query }}"</h1>
 
 {% if results %}
-<ul>
+<ul class="list-group">
     {% for user in results %}
-    <li><a href="{% url 'user_profile' user.username %}">{{ user.username }}</a></li>
+    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' user.username %}">
+            {{ user.username}}</a></li>
     {% endfor %}
 </ul>
 {% else %}
