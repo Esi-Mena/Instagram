@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from os import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pixlpix',
+    'crispy_forms',
+    
 ]
 
 MIDDLEWARE = [
@@ -77,10 +80,44 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+        # Use below for deployment
+        'ENGINE': environ.get('DATABASE_ENGINE'),
+        'NAME': environ.get('DATABASE_NAME'),
+
+        #Use Below for developing Locally 
+
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+POSTGRES_DB = environ.get("POSTGRES_DB")  # database name
+POSTGRES_PASSWORD = environ.get("POSTGRES_PASSWORD")  # database user password
+POSTGRES_USER = environ.get("POSTGRES_USER")  # database username
+POSTGRES_HOST = environ.get("POSTGRES_HOST")  # database host
+POSTGRES_PORT = environ.get("POSTGRES_PORT")  # database port
+
+POSTGRES_READY = (
+    POSTGRES_DB is not None
+    and POSTGRES_PASSWORD is not None
+    and POSTGRES_USER is not None
+    and POSTGRES_HOST is not None
+    and POSTGRES_PORT is not None
+)
+
+if POSTGRES_READY:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": POSTGRES_DB,
+            "USER": POSTGRES_USER,
+            "PASSWORD": POSTGRES_PASSWORD,
+            "HOST": POSTGRES_HOST,
+            "PORT": POSTGRES_PORT,
+        }
+    }
+
 
 
 # Password validation
@@ -130,7 +167,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://instagram-production.up.railway.app/'
-]

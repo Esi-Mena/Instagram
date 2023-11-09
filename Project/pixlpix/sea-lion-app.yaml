@@ -1,6 +1,10 @@
 alerts:
 - rule: DEPLOYMENT_FAILED
 - rule: DOMAIN_FAILED
+envs:
+- key: DISABLE_COLLECTSTATIC
+  scope: RUN_AND_BUILD_TIME
+  value: "1"
 features:
 - buildpack-stack=ubuntu-18
 ingress:
@@ -43,4 +47,4 @@ static_sites:
     repo: Esi-Mena/Instagram
   name: sea-lion-app-static
   output_dir: static
-  source_dir: /Project/static
+  source_dir: /Project

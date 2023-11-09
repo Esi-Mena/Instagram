@@ -5,7 +5,7 @@
 {% block content %}
 {% load static %}
 
-
+{% if user.is_authenticated %}
 <main>
     <section class="photo-feed">
         {% for photo in photos %}
@@ -17,10 +17,25 @@
                     </a>
                 </li>
                 <li class="list-group-item"><img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%"></li>
+                <li class="list-group-item">
+                    <!-- {% if request.user in photo.likes.all %}
+                    <a href="{% url 'unlike_photo' photo_id=photo.id %} " class="btn btn-dark">
+                        Unlike
+                    </a>
+                    {% else %}
+                    <a href="{% url 'like_photo' photo_id=photo.id %} " class="btn btn-dark">
+                        Like!
+                    </a>
+                    {% endif %} -->
+                    <p>{{ photo.likes.count }} Like(s)</p>
+                </li>
                 <li class="list-group-item">{{ photo.caption }}</li>
                 <li class="list-group-item">
-                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                        Checkout Profile
+
+                    <a href="{% url 'like_photo_homepage' photo_id=photo.id %}" class="btn btn-dark">Like</a>
+                    <a href="{% url 'photo_detail' photo_id=photo.id %} " style="margin-left: 10px;"
+                        class="btn btn-dark">
+                        Comment
                     </a>
                 </li>
             </ul>
@@ -36,5 +51,12 @@
 
     </section>
 </main>
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
+
+{% endif %}
 
 {% endblock %}

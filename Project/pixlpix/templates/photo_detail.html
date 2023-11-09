@@ -3,6 +3,8 @@
 {% block title %} Photo Details{% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
 <main>
     <section class="photo-detail">
         <div class="photo">
@@ -10,11 +12,11 @@
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
             {% if request.user in photo.likes.all %}
-            <a href="{% url 'unlike_photo' photo_id=photo.id %} " style="color: white;">
-                Unlike...
+            <a href="{% url 'unlike_photo' photo_id=photo.id %} " class="btn btn-dark">
+                Unlike
             </a>
             {% else %}
-            <a href="{% url 'like_photo' photo_id=photo.id %} " style="color: white;">
+            <a href="{% url 'like_photo' photo_id=photo.id %} " class="btn btn-dark">
                 Like!
             </a>
             {% endif %}
@@ -38,5 +40,11 @@
         </section>
     </section>
 </main>
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
 
+{% endif %}
 {% endblock %}

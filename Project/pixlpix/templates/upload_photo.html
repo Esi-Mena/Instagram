@@ -3,6 +3,8 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+{% if user.is_authenticated %}
 <main>
     <section class="upload-form">
         <h1>Upload a Photo</h1>
@@ -13,7 +15,13 @@
         </form>
     </section>
 </main>
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
 
+{% endif %}
 
 
 {% endblock %}

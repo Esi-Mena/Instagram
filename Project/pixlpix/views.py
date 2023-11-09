@@ -16,6 +16,16 @@ from .models import Photo
 from .forms import PhotoEditForm
 
 
+
+
+def follow_list(request, username):
+    user_profile = UserProfile.objects.get(user__username=username)
+    followers = user_profile.followers.all()
+    following = user_profile.following.all()
+
+    return render(request, 'follow_list.html', {'followers': followers, 'following': following})
+
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -40,7 +50,7 @@ def signup_view(request):
 
     return render(request, 'signup.html', {'form': form})
 
-@login_required
+
 def home(request):
     # Retrieve photos and other data here
     photos = Photo.objects.all().order_by('-id')  
@@ -48,6 +58,14 @@ def home(request):
     return render(request, 'home.html', context)
 
 @login_required
+def following_view(request):
+    current_user_profile = get_object_or_404(UserProfile, user=request.user)
+    following_users = current_user_profile.following.all()
+    photos = Photo.objects.filter(user__in=following_users).order_by('-id')
+    return render(request, 'home.html', {'photos': photos})
+
+
+
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
     user_profile = UserProfile.objects.get(user=user)
@@ -63,7 +81,7 @@ def user_profile(request, username):
 
     return render(request, 'user_profile.html', context)
 
-@login_required
+
 def upload_photo(request):
     if request.method == 'POST':
         form = PhotoUploadForm(request.POST, request.FILES)
@@ -80,7 +98,7 @@ def upload_photo(request):
     context = {'form': form}
     return render(request, 'upload_photo.html', context)
 
-@login_required
+
 def photo_detail(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
     comments = Comment.objects.filter(photo=photo)
@@ -103,7 +121,7 @@ def photo_detail(request, photo_id):
     return render(request, 'photo_detail.html', context)
 
 
-@login_required
+
 def like_photo(request, photo_id):
     photo = get_object_or_404(Photo, pk=photo_id)
     photo.likes.add(request.user)
@@ -111,6 +129,7 @@ def like_photo(request, photo_id):
 
     # Redirect back to the photo detail page or another appropriate URL
     return redirect('photo_detail', photo_id=photo_id)
+
 
 @login_required
 def unlike_photo(request, photo_id):
@@ -124,21 +143,24 @@ def unlike_photo(request, photo_id):
 @login_required
 def follow_user(request, username):
     user_to_follow = get_object_or_404(UserProfile, user__username=username)
-    user_to_follow.followers.add(request.user)
-    # Add logic to handle following the user (e.g., add the user_to_follow to the followers ManyToMany field)
+    requesting_user_profile = request.user.userprofile
 
-    # Redirect back to the user's profile page or another appropriate URL
+    if user_to_follow.user != request.user:
+        user_to_follow.followers.add(request.user)
+        requesting_user_profile.following.add(user_to_follow.user)
+        
     return redirect('user_profile', username=username)
 
 @login_required
 def unfollow_user(request, username):
     user_to_unfollow = get_object_or_404(UserProfile, user__username=username)
-    user_to_unfollow.followers.remove(request.user)
-    # Add logic to handle unfollowing the user (e.g., remove the user_to_unfollow from the followers ManyToMany field)
+    requesting_user_profile = request.user.userprofile
 
-    # Redirect back to the user's profile page or another appropriate URL
+    if user_to_unfollow.user != request.user:
+        user_to_unfollow.followers.remove(request.user)
+        requesting_user_profile.following.remove(user_to_unfollow.user)
+    
     return redirect('user_profile', username=username)
-
 def login_view(request):
 
     if request.method == 'POST':
@@ -224,3 +246,12 @@ def delete_photo(request, photo_id):
         
     context = {'photo': photo}
     return render(request, 'delete_photo.html', context)
+
+@login_required
+def like_photo_homepage(request, photo_id):
+    photo = get_object_or_404(Photo, pk=photo_id)
+    photo.likes.add(request.user)
+    # Add logic to handle liking the photo (e.g., add the user to the liked_photos ManyToMany field)
+
+    # Redirect back to the homepage or another appropriate URL
+    return redirect('home')
