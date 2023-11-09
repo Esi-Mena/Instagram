@@ -1,0 +1,110 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+}
+
+.instagram-logo {
+    font-family: 'Grand Hotel', cursive;
+    font-size: 2em;
+    margin-bottom: 30px;
+    background: rgb(0, 0, 0);
+    -webkit-background-clip: text;
+    background-clip: text;  /* Standard property */
+    color: transparent;  /* Fallback color */
+}
+.instagram-logo img{
+    width: 170px;
+    margin-right: 10px;
+    vertical-align: middle; 
+}
+
+.login-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px auto;
+    background: #ffffff;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+    display: block;
+}
+
+.login-button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px auto;
+    background: #4CB5F9;
+    border: none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+}
+
+.divider {
+    margin: 20px auto;
+    position: relative;
+    text-align: center;
+    color: #999;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ffffff;
+    margin: 0 10px;
+}
+
+.facebook-login {
+    width: calc(100% - 30px);
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 15px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+}
+
+.facebook-login img {
+    width: 20px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.forgot-password {
+    color: #00376b;
+    text-decoration: none;
+    display: block;
+    font-size: 13px;
+    margin: 10px auto;
+}
+
+.signup-option {
+    font-size: 14px;
+    margin: 30px auto;
+}
+
+.signup-option a {
+    color: #0095f6;
+    text-decoration: none;
+}

@@ -1,39 +1,71 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if user_profile.profile_picture %}
-<img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%">
-{% else %}
 
-{% endif %}
-<div class="row">
-    <div class="col-9">
-        <h1>{{ user_profile.user.username }}</h1>
-    </div>
-    <div class="col">
-        {% if is_own_profile %}
-        <!-- If the current user is viewing their own profile, display an Edit button -->
-        <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            {% if user_profile.profile_picture %}
+            <div class="profile-picture"></div>
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%"
+                style="border-radius: 50%; max-width: 100%; padding-top: 2%;">
+
+        </div>
         {% else %}
-        <a href="{% url 'follow_user' username=user.username %}">Follow</a>
+
         {% endif %}
-    </div>
-</div>
+        <div class="row">
+            <div class="col-9">
+                <h1>{{ user_profile.user.username }}</h1>
+            </div>
+            <div class="col">
+                {% if is_own_profile %}
+                <!-- If the current user is viewing their own profile, display an Edit button -->
+                <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+                {% else %}
+                {% if request.user in user_profile.followers.all %}
+                <a href="{% url 'unfollow_user' username=user_profile.user.username%}"
+                    class='btn btn-primary'>Unfollow</a>
+                {% else %}
+                <a href="{% url 'follow_user' username=user_profile.user.username %}" class='btn btn-primary'>Follow</a>
+                {% endif %}
+                {% endif %}
 
-<p>{{ user_profile.user.email }}</p>
-<p>{{ user_profile.bio }}</p>
-<h2>{{ user_profile.user.username }}'s posts</h2>
-<div class="row">
-    {% for photo in user_photos %}
-    <div class="col-4">
-        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="75%">
-        <p>{{ photo.caption }}</p>
-        {% if is_own_profile %}
-        <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
+
+
+            </div>
+        </div>
+
+        <p>{{ user_profile.user.email }}</p>
+        <p>{{ user_profile.bio }}</p>
+        <p>
+            <!-- Within the user's profile template -->
+            <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers :
+                {{user_profile.followers.count }}</a>
+
+
+        </p>
+        <h2>{{ user_profile.user.username }}'s posts</h2>
+        <div class="row">
+            {% for photo in user_photos %}
+            <div class="col-10">
+                <a href="{% url 'photo_detail' photo_id=photo.id %}" class="btn btn-dark">
+                    <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="100%">
+                </a>
+                <p>{{ photo.caption }}</p>
+                {% if is_own_profile %}
+                <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
+                {% endif %}
+            </div>
+
+            {% endfor %}
+        </div>
+        {% else %}
+        <p>
+            If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+            If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+        </p>
+
         {% endif %}
-    </div>
 
-    {% endfor %}
-</div>
-
-
-{% endblock %}
+        {% endblock %}

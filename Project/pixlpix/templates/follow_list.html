@@ -1,0 +1,33 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Followers</h2>
+<ul class="list-group">
+    {% for follower in followers %}
+    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follower.username %}">
+            {{follower }}</a></li>
+    </li>
+    {% empty %}
+    <p>No followers yet.</p>
+    {% endfor %}
+</ul>
+
+<h2>Following</h2>
+<ul class="list-group">
+    {% for follow in following %}
+    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follow.username %}">
+            {{follow}}</a></li>
+    </li>
+    {% empty %}
+    <p>Not following anyone yet.</p>
+    {% endfor %}
+</ul>
+{% else %}
+<p>
+    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+</p>
+
+{% endif %}
+{% endblock %}

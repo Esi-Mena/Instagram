@@ -1,11 +1,29 @@
-{% extends 'base.html' %}
+{% load static %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'signup.css' %}" type="text/css">
+{% endblock %}
+
 
 {% block content %}
-<h2>Sign up</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Sign up</button>
-</form>
-<p>Already have an account? <a href="{% url 'login' %}" class="btn btn-primary">Log in</a></p>
+<div class="signup-container">
+    <h1 class="instagram-logo">
+        <img src="{% static 'img/logo.png' %}" alt="Instagram" />
+    </h1>
+    <button class="facebook-login">
+        <img src="{% static 'img/facebook.png' %}" alt="Facebook" />
+        Log in with Facebook
+    </button>
+    <div class="divider">OR</div>
+    <form method="post" class="signup-form">
+        {% csrf_token %}
+        {{ form.email }}
+        {{ form.username }}
+        {{ form.password1 }}
+        {{ form.password2 }}
+        <p class="agreement-text">By signing up, you agree to our Terms , Privacy Policy and Cookies Policy. </p>
+        <button type="submit" class="signup-button">Sign up</button>
+    </form>
+    <p class="login-prompt">Have an account? <a href="{% url 'login' %}">Log in</a></p>
+</div>
 {% endblock %}
