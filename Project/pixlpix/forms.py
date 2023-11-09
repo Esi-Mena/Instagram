@@ -9,7 +9,16 @@ class LoginForm(AuthenticationForm):
     pass
 
 class SignupForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.')
+    email = forms.EmailField(max_length=254, help_text='Required. Enter a valid email address.' ,widget=forms.EmailInput(attrs={'placeholder': 'Mobile Number or Email'}))
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Username'})
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Password'})
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'})
+    )
 
     class Meta:
         model = User

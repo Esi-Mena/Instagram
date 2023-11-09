@@ -1,17 +1,31 @@
-{% extends 'base.html' %}
 
-{% block title %}Log In{% endblock %}
+
+{% load static %}  <!-- This line is necessary to use the static template tag -->
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'login.css' %}" type="text/css">
+{% endblock %}
+
 
 {% block content %}
-<h2>Log In</h2>
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    {{ form.username.label_tag }}
-    {{ form.username }}
-    {{ form.password.label_tag }}
-    {{ form.password }}
-    <button type="submit" class="btn btn-primary">Log In</button>
-</form>
-
-<p>Don't have an account? <a href="{% url 'signup' %}" class="btn btn-primary">Sign up</a></p>
+<div class="login-container">
+    <h1 class="instagram-logo">
+        <img src="{% static 'img/logo.png' %}" alt="Instagram" />
+    </h1>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Phone number, username, or email">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit" class="login-button">Log in</button>
+        <div class="divider">OR</div>
+        <button class="facebook-login">
+            <img src="{% static 'img/facebook.png' %}" alt="Facebook" />
+            Log in with Facebook
+        </button>
+        <a href="#" class="forgot-password">Forgot password?</a>
+    </form>
+    <div class="signup-option">
+        Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+    </div>
+</div>
 {% endblock %}

@@ -55,7 +55,7 @@ def home(request):
     # Retrieve photos and other data here
     photos = Photo.objects.all().order_by('-id')  
     context = {'photos': photos}
-    return render(request, 'home.html', context)
+    return render(request, 'base2.html', context)
 
 @login_required
 def following_view(request):
