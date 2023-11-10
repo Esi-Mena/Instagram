@@ -1,0 +1,2 @@
+# Milestone 6 Ai prompts - Maxwell Seybert
+This week I did not use chat gpt a whole lot but I did ask it a few questions about the model for followers. "How can I make followers a part of the user model" "should followers be its own model" "How can I create a button that adds the user being followed to the other users following list but also gives the user another follower."
