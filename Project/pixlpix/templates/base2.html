@@ -43,7 +43,7 @@
       </div>        
 
       <div class="sidebarOption{% if request.resolver_match.url_name == 'messages' %} active{% endif %}">
-        <a href="{% url 'following_feed' %}" class="sidebarOption__link">
+        <a href="{% url 'follow_list' username=user.username %}" class="sidebarOption__link">
             <span class="material-icons">group</span>
             <h2>Following</h2>
         </a>

@@ -22,8 +22,15 @@
                 {% if is_own_profile %}
                 <a href="{% url 'edit_profile' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Edit Profile</a>
                 {% else %}
-                <a href="{% url 'follow_user' username=user.username %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Follow</a>
+                {% if request.user in user_profile.followers.all %}
+                <a href="{% url 'unfollow_user' username=user_profile.user.username%}"class='btn btn-primary'>Unfollow</a>
+                {% else %}
+                <a href="{% url 'follow_user' username=user_profile.user.username %}" class='btn btn-primary'>Follow</a>
                 {% endif %}
+                {% endif %}
+               <p>
+                <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers: {{user_profile.followers.count }}</a>
+                </p>
             </div>
         </div>
     </div>
