@@ -1,416 +1,459 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    --instagram-color: #bb55a9;
-    --instagram-background: #e6ecf0;
-    --icon-colors: #000000;
-  }
-  
-  .sidebarOption {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    justify-content: center;
-  }
-  
-  .sidebarOption .material-icons,
-  .fa-instagram {
-    padding: 20px;
-  }
-  
-  .sidebarOption h2 {
-    font-weight: 500;
-    font-size: 20px;
-    margin-right: 20px;
-  }
-  
-  .sidebarOption:hover {
-    background-color: var(--instagram-background);
-    border-radius: 30px;
-    color: var(--instagram-color);
-    transition: color 100ms ease-out;
-  }
-  
-  .sidebarOption.active {
-    color: var(--instagram-color);
-    font-weight: 800;
-  }
-  
-  .sidebarOption__link {
-    display: flex; /* or block, depending on your layout */
-    align-items: center;
-    width: 100%; /* take full width of the parent */
-    text-decoration: none; /* remove underline from all states */
-    color: inherit; /* to maintain text color */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --instagram-color: #bb55a9;
+  --instagram-background: #e6ecf0;
+  --sidebar-background: #b4b4b4;
+  --icon-colors: #000000;
+}
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  padding-left: -30px;
+  margin-left: -65px;
+  width: 200px;
+}
+
+
+.sidebarOption .material-icons,
+.fa-instagram {
+  padding: 20px;
+}
+
+.sidebarOption h2 {
+  font-weight: 450;
+  font-size: 16px;
+  margin-right: 20px;
+  align-items: center;
+}
+
+.sidebarOption:hover {
+  background-color: var(--instagram-background);
+  border-radius: 30px;
+  color: var(--instagram-color);
+  transition: color 100ms ease-out;
+}
+
+.sidebarOption.active {
+  color: var(--instagram-color);
+  font-weight: 800;
+}
+
+.sidebarOption__link {
+  display: flex; /* or block, depending on your layout */
+  align-items: center;
+  width: 100%; /* take full width of the parent */
+  text-decoration: none; /* remove underline from all states */
+  color: inherit; /* to maintain text color */
 }
 
 .sidebarOption__link:hover {
-    background-color: var(--instagram-background); /*hover color*/
-    border-radius: 30px;
-    color: var(--instagram-color);
-    transition: color 100ms ease-out;
+  background-color: var(--instagram-background); /*hover color*/
+  border-radius: 30px;
+  color: var(--instagram-color);
+  transition: color 100ms ease-out;
 }
 
-  .sidebar__tweet {
-    width: 80%;
-    background-color: black;
-    border: none;
-    color: white;
-    font-weight: 900;
-    border-radius: 30px;
-    height: 50px;
-    margin-top: 20px;
-  }
-  
-  body {
-    display: flex;
-    height: 100vh;
-    max-width: 1300px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0 10px;
-  }
-  
-  .sidebar {
-    border-right: 1px solid var(--instagram-background);
-    flex: 0.2;
-  
-    min-width: 360px;
-    margin-top: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-left: 0;
-  }
-
-  .sidebar-logo {
-    height: 100px; /* Adjust the size as needed */
-    width: auto; /* Maintain aspect ratio */
-    padding: 20px;
-    
-    display: flex;
-    align-items: flex-start;
-    
-  }
-  
-  .fa-instagram {
-    color: var(--instagram-color);
-    font-size: 30px;
-    align-items: center;
-  }
-  
-  /* feed */
-  .feed {
-    flex: 0.5;
-    border-right: 1px solid var(--instagram-background);
-    min-width: fit-content;
-    overflow-y: scroll;
-  }
-  
-  .feed__header {
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 100;
-    border: 1px solid var(--instagram-background);
-    padding: 15px 20px;
-  }
-  
-  .feed__header h2 {
-    font-size: 20px;
-    font-weight: 800;
-  }
-  
-  .feed::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .feed {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  /*stories*/
-  .stories-title .btn i {
-    font-size: 24px;
-    margin-right: 10px;
-    margin-left: 2px;
-    padding-left: 2px;
-  }
-
-  .stories {
-    display:flex;
-    align-items: center;
-    margin-top: 4rem;
-    margin-bottom: 1rem;
-  }
-  
-  .stories-img{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: 2px solid #e2336b;
-    margin-right: 20px;
-  }
-
-  .stories-img img{
-    
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid #e2336b;
-    object-position: center;
-  }
-  .stories-img.color{
-    border: 2px solid #dbdbdb;
-  }
-
-  .stories-img .add{
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    color: #1e1c1c;
-    background: hsla(24, 100%, 67%, 0);
-
-  }
-  .stories-container {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: scroll;
-    scrollbar-width: none; /* for Firefox */
-    -ms-overflow-style: none; /* for Internet Explorer and Edge */
-  }
-  
-  .story {
-    display: inline-block;
-    width: 80px; /* Example width, adjust as needed */
-    height: 80px; /* Example height, adjust as needed */
-    border-radius: 50%; /* Make it round */
-    margin-right: 10px; /* Space between stories */
-    padding-top: 14px;
-  }
-  
-  .stories-container::-webkit-scrollbar {
-    display: none; /* Hides scrollbar for webkit browsers */
-  }
-  
-  
-  
-  /* You can add this to individual story items if they don't already have it */
-  .story-item {
-    display: inline-block; /* Needed for horizontal scrolling */
-    margin-right: 10px; /* Space between items */
-  }
-  
-  
-
-
-
-  /* post */
-  .post__avatar img {
-    border-radius: 50%;
-    height: 40px;
-  }
-  
-  .post {
-    display: flex;
-    align-items: flex-start;
-    border-bottom: 1px solid var(--instagram-background);
-    padding-bottom: 10px;
-  }
-
-  .post__body {
-    flex: 1;
-    padding: 10px;
-    
-  }
-  
-  .post__body img {
-    width: 450px;
-    height: auto; /* maintain the aspect ratio of the image */
-    max-height: 600px;
-    object-fit: contain;
-    border-radius: 20px;
-    margin-top: 10px;
-  }
-  
-  
-  .post__footer {
-    display: flex;
-    flex-direction: column; /* Stack the icons and caption on top of each other */
-    align-items: flex-start; /* Align children (icons and caption) to the start of the cross axis */
-    margin-top: 10px;
-    padding-bottom: 10px;
-  }
-  .post__footerIcons {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px; /* Space between icons and caption */
-    margin-top: 10px;
-   
-    
-  }
-  .likes-count {
-    margin-top: -5px; /* Adjust the value as needed to bring it closer */
-    font-weight: bold;
-   
+.sidebar__tweet {
+  width: 50%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-weight: 900;
+  border-radius: 30px;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: 1px;
 }
-  
 
-  .post__footerIcons .material-icons {
-  margin-right: 20px; /* Space between icons */
+body {
+  display: flex;
+  height: 100vh;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
+
+.sidebar {
+  border-right: 1px solid var(--instagram-background);
+  flex: 0.2;
+
+  min-width: 250px;
+  margin-top: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-left: 0;
+  margin-right: 80px;
+}
+
+.sidebar-logo {
+  height: 100px; /* Adjust the size as needed */
+  width: auto; /* Maintain aspect ratio */
+  padding: 20px;
+  
+  display: flex;
+  align-items: flex-start;
+  padding-left: -150px;
+  margin-left: -50px;
+  
+}
+
+.fa-instagram {
+  color: var(--instagram-color);
+  font-size: 30px;
+  align-items: center;
+}
+
+/* feed */
+.feed {
+  flex: 0.5;
+  border-right: 1px solid var(--instagram-background);
+  min-width: 700px;
+  overflow-y: scroll;
+  max-width: 300px;
+}
+
+.feed__header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  border: 0px solid var(--instagram-background);
+  padding-bottom: 16px;
+}
+
+.feed__header h2 {
+  font-size: 20px;
+  font-weight: 800;
+}
+.feed::-webkit-scrollbar {
+  display: none;
+}
+
+.feed {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/*stories*/
+.story {
+  display: inline-block;
+  width: 80px; /* Example width, adjust as needed */
+  height: 80px; /* Example height, adjust as needed */
+  border-radius: 50%; /* Make it round */
+  margin-right: -15px; /* Space between stories */
+  padding-top: 14px;
+  min-width: 80px;
+}
+
+.stories-img{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #e2336b;
+  margin-right: 20px;
+}
+
+.stories-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  margin-right: 50px;
+  margin-left: 15px;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;
+  
+  /*scrollbar-width: none; /* for Firefox */
+  /*-ms-overflow-style: none; /* for Internet Explorer and Edge */
+  
+}
+
+.stories-container::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Additional styles for the story navigation buttons */
+.scroll-left, .scroll-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(226, 159, 245, 0.881); /* Example color, change as needed */
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  width: 25px; /* Adjust size as needed */
+  height: 25px; /* Adjust size as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-left {
+  left: 1px; /* Adjust position as needed */
+}
+
+.scroll-right {
+  right: 40px; /* Adjust position as needed */
+}
+
+/* post */
+.post {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 0px solid var(--instagram-background);
+  padding-bottom: 10px;
+  margin-left: 70px;
+}
+
+.post__avatar {
+  padding: 6px;
+  margin-bottom: -42px;
+  margin-left: 75px;
+}
+
+.post__avatar img {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 2px;
+  margin-right: 20px;
+
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  /* Create the circular shape with the image in the center */
+  box-shadow: 0 0 0 2px white;
+}
+
+.post__badge {
+  font-size: 14px !important;
+  color: var(--instagram-color);
+  margin-right: 5px;
+}
+
+.post__headerSpecial {
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}
+
+.post__headerText h3 {
+  font-size: 15px;
+  margin-bottom: 8px;
+  margin-left: 48px;
+  font-weight: 500;
   color: var(--icon-colors);
-  }
+}
 
-  .post__footerCaption {
-    margin-left: 2px; /* Space before the caption if you need it */
-    font-weight: 900;
-  }
-  .post__footerCaption2 {
-    margin-left: 2px; /* Space before the caption if you need it */
-  }
-
-  .post__footerCaptionsContainer {
-    display: flex; /* Align children horizontally */
-    align-items: center; /* Center them vertically */
-    gap: 10px; /* Add some space between the username and the caption */
-  }
-  
-  .post__footerCaptionUser,
-  .post__footerCaptionText {
-    margin: 0; /* Remove margin for these specific elements */
-  }
-  .post__footerCaption,
-  .post__footerCaption2 {
-  margin: 0; /* Remove margin if you want them to be closer */
-  }
-  .post__footerCaptionUser a {
-    font-weight: bold; /* Make the username bold */
-  }
-  
-  .post__badge {
-    font-size: 14px !important;
-    color: var(--instagram-color);
-    margin-right: 5px;
-  }
-  
-  .post__headerSpecial {
-    font-weight: 600;
-    font-size: 12px;
-    color: gray;
-  }
-  
-  .post__headerText h3 {
-    font-size: 15px;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: var(--icon-colors);
-  }
-  
-  .post__headerDescription {
-    margin-bottom: 10px;
-    font-size: 15px;
-  }
-
-  
-  .post__avatar {
-    padding: 6px;
-  }
-  
-  /* widgets */
-  .widgets {
-    flex: 0.3;
-  }
-  
-  .widgets__input {
-    display: flex;
-    align-items: center;
-    background-color: var(--instagram-background);
-    padding: 10px;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-left: 20px;
-  }
-  
-  .widgets__input input {
-    border: none;
-    background-color: var(--instagram-background);
-  }
-  
-  .widgets__searchIcon {
-    color: gray;
-  }
-  
-  .widgets__widgetContainer {
-    margin-top: 15px;
-    margin-left: 20px;
-    padding: 20px;
-    background-color: #f5f8fa;
-    border-radius: 20px;
-  }
-  
-  .widgets__widgetContainer h2 {
-    font-size: 18px;
-    font-weight: 800;
-  }
+.post__headerDescription {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
 
 
-  /* extra */
+.post__body {
+  flex: 1;
+  padding: 10px;
+  
+}
 
-  .main-posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px, auto));
-    gap: 11;
-  
-  }
-  .poat-box{
-    width: 300;
-  }
-  
-  .post-box img{
-    width: 100%;
-    height: 344px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-  }
-  
-  .post-info{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  
-  }
-  .post-img{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    border: 2px solid #e2336b;
-  }
-  .post-img img{
-    width:  27px;
-    height: 27px;
-    object-fit: cover;
-    border-radius: 50%;
-    object-position: center;
-  }
-  .post-profile{
-    display: flex;
-    align-items: center;
-  }
+.post__body img {
+  width: 450px;
+  height: auto; /* maintain the aspect ratio of the image */
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 20px;
+  margin-top: 10px;
+  border: 2px solid rgb(211, 211, 211);
+}
 
+
+.post__footer {
+  display: flex;
+  flex-direction: column; /* Stack the icons and caption on top of each other */
+  align-items: flex-start; /* Align children (icons and caption) to the start of the cross axis */
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+.post__footerIcons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Space between icons and caption */
+  margin-top: 10px;  
+}
+.likes-count {
+  margin-top: -15px; /* Adjust the value as needed to bring it closer */
+  font-weight: bold;
+  font-size: 14px;
+ 
+}
+
+.post__footerIcons .material-icons {
+margin-right: 20px; /* Space between icons */
+color: var(--icon-colors);
+}
+
+.post__footerCaption {
+  margin-left: 2px; /* Space before the caption if you need it */
+  font-weight: 800;
+  font-size: 14px;
+ 
+}
+.post__footerCaption2 {
+  margin-left: 2px; /* Space before the caption if you need it */
+}
+
+.post__footerCaptionsContainer {
+  display: flex; /* Align children horizontally */
+  align-items: center; /* Center them vertically */
+  gap: 10px; /* Add some space between the username and the caption */
+  margin-top: -14px;
+}
+
+.post__footerCaptionText {
+  font-weight: 400; /* Remove margin for these specific elements */
+  font-size: 14px;
+}
+
+.post__footerCaptionUser,
+.post__footerCaptionText {
+  margin: 0; /* Remove margin for these specific elements */
+}
+.post__footerCaption,
+.post__footerCaption2 {
+margin: 0; /* Remove margin if you want them to be closer */
+}
+.post__footerCaptionUser a {
+  font-weight: 600; /* Make the username bold */
+}
+
+.post__footerCaptionb {
+  margin-left: 2px; /* Space before the caption if you need it */
+  margin-top: 9px;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+
+
+/* widgets */
+.widgets {
+  flex: 0.3;
+}
+
+.widgets__input {
+  display: flex;
+  align-items: center;
+  background-color: var(--instagram-background);
+  padding: 10px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.widgets__input input {
+  border: none;
+  background-color: var(--instagram-background);
+}
+
+.widgets__searchIcon {
+  color: gray;
+}
+
+.widgets__widgetContainer {
+  margin-top: 15px;
+  margin-left: 20px;
+  padding: 20px;
+  background-color: #f5f8fa;
+  border-radius: 20px;
+}
+
+.widgets__widgetContainer h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+
+/* extra */
+
+.main-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px, auto));
+  gap: 11;
+
+}
+.poat-box{
+  width: 300;
+}
+
+.post-box img{
+  width: 100%;
+  height: 344px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.post-info{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.post-img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  border: 2px solid #e2336b;
+}
+.post-img img{
+  width:  27px;
+  height: 27px;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: center;
+}
+.post-profile{
+  display: flex;
+  align-items: center;
+}
+
+.footer-dropdown {
+  margin-top: 100px;
+  margin-left: -100px;
+}
+
+#dropdown {
+  position: absolute;
+  bottom: 100%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+}
+.save-changes-btn {
   
+  margin-bottom: 20px; 
+}
+
+/* Style the container holding the buttons */
+.button-container {
+  margin-bottom: 10px; 
+}
+

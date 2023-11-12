@@ -1,25 +1,78 @@
+<style>
+    @media (min-width: 800px) {
+      .search-container {
+        width: 100%; /* Full width of the container */
+        max-width: 800px; /* Maximum width */
+        length: 600;
+        margin: 0 auto; /* Center in the available space */
+        padding bottom: 8px;
+      }
+      #default-search {
+        width: calc(100% - 4rem); /* Adjust width, subtract width of the button */
+        height:50;
+      }
+      .search-button {
+        position: absolute;
+        top: 50%;
+        right: 75px; /* Adjust this value as needed for exact positioning */
+        transform: translateY(-50%);
+        /* Set the size of the button, if needed */
+        width: 6rem; /* Width of the button */
+        height: 2.5rem; /* Height of the button */
+        padding: 0 15px; /* Padding inside the button */
+
+      }
+    }
+  </style>
+
 {% extends 'base2.html' %}
+
+{% block additional_css %}
+<!-- Tailwind CSS -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+<!-- Flowbite CSS -->
+<link href="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.css" rel="stylesheet" />
+<link href="/static/styles.min.css" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
-{% if user.is_authenticated %}
-<h1>Search Results for "{{ query }}"</h1>
+<!-- Here you place your search form -->
+<div class="search-container">
+    <form method="{% url 'search_profiles' %}" method="GET">
+      <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+      <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <!-- Search icon SVG here -->
+          </div>
+          <input type="text" name="q" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Profiles..." required>
+          <button type="submit" class="search-button text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+      </div>
+    </form>
+  </div>
 
-{% if results %}
-<ul class="list-group">
-    {% for user in results %}
-    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' user.username %}">
-            {{ user.username}}</a></li>
-    {% endfor %}
-</ul>
-{% else %}
-<p>No results found.</p>
-{% endif %}
-{% else %}
-<p>
-    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
-    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
-</p>
+    <!-- Below is the section where search results are displayed -->
+    {% if user.is_authenticated %}
+    <h1>Search Results for "{{ query }}"</h1>
 
-{% endif %}
+    {% if results %}
+    <ul class="divide-y divide-gray-200">
+        {% for user in results %}
+        <li class="p-4 hover:bg-gray-100 dark:hover:bg-gray-600">
+            <a href="{% url 'user_profile' user.username %}" class="text-sm text-gray-700 dark:text-gray-200">
+                {{ user.username }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+    {% else %}
+    <p>
+        If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
+        If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
+    </p>
+
+    {% endif %}
 {% endblock %}
