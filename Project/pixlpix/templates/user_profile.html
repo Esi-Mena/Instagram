@@ -1,61 +1,58 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
+
+{% load static %}
+
+{% block additional_css %} 
+<!-- Add any additional CSS if needed here -->
+{% endblock %}
+
 {% block content %}
-
-{% if user.is_authenticated %}
-<div class="container">
-    <div class="row">
-        <div class="col-3">
+<div class="container mx-auto p-4">
+    <div class="flex flex-wrap -mx-4 items-center"> <!-- Use flex and items-center to align items vertically -->
+        <div class="px-4 mb-4 md:mb-0">
             {% if user_profile.profile_picture %}
-            <div class="profile-picture"></div>
-            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" width="50%"
-                style="border-radius: 50%; max-width: 100%; padding-top: 2%;">
-
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto md:mx-0"> <!-- Remove flex-grow -->
+            {% endif %}
         </div>
-        {% else %}
-
-        {% endif %}
-        <div class="row">
-            <div class="col-9">
-                <h1>{{ user_profile.user.username }}</h1>
-            </div>
-            <div class="col">
+        <div class="px-4 flex-grow">
+            <h1 class="text-2xl font-bold">{{ user_profile.user.username }}</h1>
+            <p class="text-gray-600">{{ user_profile.user.email }}</p>
+            <p class="text-gray-600">{{ user_profile.bio }}</p>
+            <div>
                 {% if is_own_profile %}
-                <!-- If the current user is viewing their own profile, display an Edit button -->
-                <a href="{% url 'edit_profile' %}" class='btn btn-primary'>Edit</a>
+                <a href="{% url 'edit_profile' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Edit Profile</a>
                 {% else %}
                 {% if request.user in user_profile.followers.all %}
-                <a href="{% url 'unfollow_user' username=user_profile.user.username%}">Unfollow</a>
+                <a href="{% url 'unfollow_user' username=user_profile.user.username%}"class='btn btn-primary'>Unfollow</a>
                 {% else %}
-                <a href="{% url 'follow_user' username=user_profile.user.username %}">Follow</a>
+                <a href="{% url 'follow_user' username=user_profile.user.username %}" class='btn btn-primary'>Follow</a>
                 {% endif %}
                 {% endif %}
+               <p>
+                <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers: {{user_profile.followers.count }}</a>
+                </p>
             </div>
         </div>
+    </div>
 
-        <p>{{ user_profile.user.email }}</p>
-        <p>{{ user_profile.bio }}</p>
-        <p>Followers: {{ user_profile.followers.count }}</p>
-        <h2>{{ user_profile.user.username }}'s posts</h2>
-        <div class="row">
-            {% for photo in user_photos %}
-            <div class="col-10">
-                <a href="{% url 'photo_detail' photo_id=photo.id %}" class="btn btn-dark">
-                    <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="100%">
+    <h2 class="text-2xl font-bold mb-4 mt-6">Posts</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {% for photo in user_photos %}
+        <div>
+            {% if is_own_profile %}
+                <!-- If it's the user's own profile, make the image a link to the edit photo page -->
+                <a href="{% url 'edit_photo' photo.id %}">
+                    <img class="h-48 w-full object-cover rounded-lg border-2 border-gray-400" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
                 </a>
-                <p>{{ photo.caption }}</p>
-                {% if is_own_profile %}
-                <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary">Edit Photo</a>
-                {% endif %}
-            </div>
-
-            {% endfor %}
+            {% else %}
+                <!-- If it's not the user's profile, display the image normally -->
+                <img class="h-48 w-full object-cover rounded-lg border-2 border-gray-400" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
+            {% endif %}
+            <p class="text-gray-600 text-sm mt-2">{{ photo.caption }}</p>
         </div>
-        {% else %}
-        <p>
-            If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
-            If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
-        </p>
-
-        {% endif %}
-
-        {% endblock %}
+        {% empty %}
+        <p>No photos to display.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

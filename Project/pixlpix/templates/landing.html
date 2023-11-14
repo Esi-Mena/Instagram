@@ -3,9 +3,6 @@
 {% if user.is_authenticated %}
 <p>You are already logged in. <a href="{% url 'home' %}">Go to Home Page</a></p>
 {% else %}
-<p>
-    If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>
-    If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
-</p>
+<a href="{% url 'signup' %}">Sign up</a>
 {% endif %}
 {% endblock %}

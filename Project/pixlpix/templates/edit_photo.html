@@ -1,14 +1,37 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 
 {% block content %}
 {% if user.is_authenticated %}
+
 <div class="container">
-    <h1>Edit Photo</h1>
+    <p class="text-lg font-medium text-gray-900 dark:text-white">Edit Photo</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="javascript:void(0);" class="btn btn-danger" id="delete-photo-btn">Delete Photo</a>
+
+        {% if form.instance.image %}
+            <div class="mb-6">
+                <img class="h-auto max-w-xs" src="{{ form.instance.image.url }}" alt="image description">
+                
+            </div>
+        {% endif %}
+
+        {% for field in form %}
+                <div class="mb-6">
+                    <label for="{{ field.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ field.label }}</label>
+                    <!-- Add Flowbite classes to each form field -->
+                    <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" value="{{ field.value }}" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    <!-- Display errors for each field -->
+                    {% for error in field.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <div class="button-container">
+                <a href="javascript:void(0);" class="btn btn-primary delete-photo-btn">Delete Photo</a>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary save-changes-btn">Save Changes</button>
+            </div>
     </form>
 </div>
 

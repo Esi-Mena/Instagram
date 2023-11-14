@@ -16,6 +16,16 @@ from .models import Photo
 from .forms import PhotoEditForm
 
 
+
+
+def follow_list(request, username):
+    user_profile = UserProfile.objects.get(user__username=username)
+    followers = user_profile.followers.all()
+    following = user_profile.following.all()
+
+    return render(request, 'follow_list.html', {'followers': followers, 'following': following})
+
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -45,7 +55,7 @@ def home(request):
     # Retrieve photos and other data here
     photos = Photo.objects.all().order_by('-id')  
     context = {'photos': photos}
-    return render(request, 'home.html', context)
+    return render(request, 'base2.html', context)
 
 @login_required
 def following_view(request):
