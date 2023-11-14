@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pixlpix',
     'crispy_forms',
-    'widget_tweaks',
+    # 'widget_tweaks',
     
 ]
 
@@ -83,13 +83,13 @@ DATABASES = {
     'default': {
 
         # Use below for deployment
-        #'ENGINE': environ.get('DATABASE_ENGINE'),
-        #'NAME': environ.get('DATABASE_NAME'),
+        'ENGINE': environ.get('DATABASE_ENGINE'),
+        'NAME': environ.get('DATABASE_NAME'),
 
         #Use Below for developing Locally 
 
-         'ENGINE': 'django.db.backends.sqlite3',
-         'NAME': BASE_DIR / 'db.sqlite3',
+        #  'ENGINE': 'django.db.backends.sqlite3',
+        #  'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
