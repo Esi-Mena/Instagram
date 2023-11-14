@@ -25,9 +25,9 @@ urlpatterns = [
     
     path('search_profiles/', views.search_profiles, name='search_profiles'),
 
-     path('edit_photo/<int:photo_id>/', views.edit_photo, name='edit_photo'),
-     path('delete_photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
-     path('like_photo_homepage/<int:photo_id>/', like_photo_homepage, name='like_photo_homepage'),
+    path('edit_photo/<int:photo_id>/', views.edit_photo, name='edit_photo'),
+    path('delete_photo/<int:photo_id>/', views.delete_photo, name='delete_photo'),
+    path('like-unlike-post/<int:photo_id>/', views.like_unlike_post, name='like_unlike_post'),
 ]
 
 

@@ -18,6 +18,12 @@
             <h1 class="text-2xl font-bold">{{ user_profile.user.username }}</h1>
             <p class="text-gray-600">{{ user_profile.user.email }}</p>
             <p class="text-gray-600">{{ user_profile.bio }}</p>
+            <p>Followers: {{ user_profile.followers.count }}</p>
+            <p>
+                <!-- Within the user's profile template -->
+                <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers :
+                    {{user_profile.followers.count }}</a>
+            </p>
             <div>
                 {% if is_own_profile %}
                 <a href="{% url 'edit_profile' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Edit Profile</a>
@@ -39,16 +45,30 @@
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         {% for photo in user_photos %}
         <div>
+            {% if photo.image %}
+                {% if is_own_profile %}
+                    <a href="{% url 'edit_photo' photo.id %}">
+                        <img class="h-48 w-full object-cover rounded-none-lg border-2 border-gray-200" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
+                        <p class="text-gray-600 text-sm mt-2">{{ photo.caption }}</p>
+                    </a>
+                {% else %}
+                    <!-- If it's not the user's profile, display the image normally -->
+                    <img class="h-48 w-full object-cover rounded-none-lg border-2 border-gray-200" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
+                    <p class="text-gray-600 text-sm mt-2">{{ photo.caption }}</p>
+                    {% endif %}
+
+            {% elif photo.video %}
+            <video controls>
+                <source class="h-48 w-full object-cover rounded-lg border-2 border-gray-400" src="{{ photo.video.url }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             {% if is_own_profile %}
-                <!-- If it's the user's own profile, make the image a link to the edit photo page -->
-                <a href="{% url 'edit_photo' photo.id %}">
-                    <img class="h-48 w-full object-cover rounded-lg border-2 border-gray-400" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
-                </a>
-            {% else %}
-                <!-- If it's not the user's profile, display the image normally -->
-                <img class="h-48 w-full object-cover rounded-lg border-2 border-gray-400" src="{{ photo.image.url }}" alt="{{ photo.caption }}"> <!-- Set fixed height and width -->
-            {% endif %}
             <p class="text-gray-600 text-sm mt-2">{{ photo.caption }}</p>
+            <a href="{% url 'edit_photo' photo.id %}" class="btn btn-primary mt-2 text-gray-900">Edit Video</a>
+            {% endif %}
+            {% endif %}
+
+            
         </div>
         {% empty %}
         <p>No photos to display.</p>

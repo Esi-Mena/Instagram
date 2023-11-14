@@ -8,7 +8,14 @@
 <main>
     <section class="photo-detail">
         <div class="photo">
-            <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" width="50%">
+            {% if photo.image %}
+                <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" />
+              {% elif photo.video %}
+              <video controls class="post-media">
+                  <source src="{{ photo.video.url }}" type="video/mp4">
+                  Your browser does not support the video tag.
+              </video>
+              {% endif %}
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
             {% if request.user in photo.likes.all %}

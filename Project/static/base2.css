@@ -95,14 +95,14 @@ body {
 }
 
 .sidebar-logo {
-  height: 100px; /* Adjust the size as needed */
+  height: 80px; /* Adjust the size as needed */
   width: auto; /* Maintain aspect ratio */
   padding: 20px;
   
   display: flex;
   align-items: flex-start;
   padding-left: -150px;
-  margin-left: -50px;
+  margin-left: -20px;
   
 }
 
@@ -163,8 +163,12 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid #e2336b;
+  padding: 1px;
   margin-right: 20px;
+
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #6f18bc 100%);
+  /* Create the circular shape with the image in the center */
+  box-shadow: 0 0 0 2px rgb(255, 255, 255);
 }
 
 .stories-container {
@@ -221,7 +225,8 @@ body {
 }
 
 .post__avatar {
-  padding: 6px;
+  padding: 7px;
+  margin-top: 10px;
   margin-bottom: -42px;
   margin-left: 75px;
 }
@@ -234,7 +239,7 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  padding: 2px;
+  padding: 1px;
   margin-right: 20px;
 
   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -256,17 +261,11 @@ body {
 
 .post__headerText h3 {
   font-size: 15px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   margin-left: 48px;
   font-weight: 500;
   color: var(--icon-colors);
 }
-
-.post__headerDescription {
-  margin-bottom: 10px;
-  font-size: 15px;
-}
-
 
 .post__body {
   flex: 1;
@@ -279,9 +278,25 @@ body {
   height: auto; /* maintain the aspect ratio of the image */
   max-height: 600px;
   object-fit: contain;
-  border-radius: 20px;
+  border-radius: 0px;
   margin-top: 10px;
   border: 2px solid rgb(211, 211, 211);
+  background-color: #2a2a2a;
+}
+
+.post-media {
+  width: 450px;
+  height: auto; /* maintain the aspect ratio */
+  max-height: 600px;
+  object-fit: contain;
+  border-radius: 0px;
+  margin-top: 10px;
+  border: 2px solid rgba(119, 119, 119, 0);
+  background-color: #282828;
+}
+
+video.post-media {
+    display: block; /* Ensures that the video is displayed as a block-level element */
 }
 
 
@@ -292,22 +307,31 @@ body {
   margin-top: 10px;
   padding-bottom: 10px;
 }
+.post__footer2 {
+  display: flex;
+   /* Stack the icons and caption on top of each other */
+  align-items: flex-start; /* Align children (icons and caption) to the start of the cross axis */
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
 .post__footerIcons {
   display: flex;
   align-items: center;
   margin-bottom: 20px; /* Space between icons and caption */
-  margin-top: 10px;  
+  margin-top: 0px;  
+  font-size: 13px;
+  font-weight: 600;
 }
 .likes-count {
   margin-top: -15px; /* Adjust the value as needed to bring it closer */
   font-weight: bold;
-  font-size: 14px;
+  font-size: 10px;
  
 }
 
-.post__footerIcons .material-icons {
+.post__footer2 .material-icons {
 margin-right: 20px; /* Space between icons */
-color: var(--icon-colors);
+
 }
 
 .post__footerCaption {
@@ -325,6 +349,7 @@ color: var(--icon-colors);
   align-items: center; /* Center them vertically */
   gap: 10px; /* Add some space between the username and the caption */
   margin-top: -14px;
+  font-size: 14px;
 }
 
 .post__footerCaptionText {
@@ -340,8 +365,9 @@ color: var(--icon-colors);
 .post__footerCaption2 {
 margin: 0; /* Remove margin if you want them to be closer */
 }
-.post__footerCaptionUser a {
-  font-weight: 600; /* Make the username bold */
+.post__footerCaptionUser {
+  font-weight: 500; /* Make the username bold */
+  
 }
 
 .post__footerCaptionb {
@@ -351,44 +377,6 @@ margin: 0; /* Remove margin if you want them to be closer */
   font-size: 13px;
 }
 
-
-
-/* widgets */
-.widgets {
-  flex: 0.3;
-}
-
-.widgets__input {
-  display: flex;
-  align-items: center;
-  background-color: var(--instagram-background);
-  padding: 10px;
-  border-radius: 20px;
-  margin-top: 10px;
-  margin-left: 20px;
-}
-
-.widgets__input input {
-  border: none;
-  background-color: var(--instagram-background);
-}
-
-.widgets__searchIcon {
-  color: gray;
-}
-
-.widgets__widgetContainer {
-  margin-top: 15px;
-  margin-left: 20px;
-  padding: 20px;
-  background-color: #f5f8fa;
-  border-radius: 20px;
-}
-
-.widgets__widgetContainer h2 {
-  font-size: 18px;
-  font-weight: 800;
-}
 
 
 /* extra */
@@ -438,7 +426,7 @@ margin: 0; /* Remove margin if you want them to be closer */
 
 .footer-dropdown {
   margin-top: 100px;
-  margin-left: -100px;
+  margin-left: -125px;
 }
 
 #dropdown {
@@ -456,4 +444,42 @@ margin: 0; /* Remove margin if you want them to be closer */
 .button-container {
   margin-bottom: 10px; 
 }
+
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .feed {
+    width: 100%; /* Adjust other elements to take full width */
+  }
+  .footer-link {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+  }
+}
+
+
+/* Loading state (e.g., spinner icon or opacity change) */
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+  outline: none;
+}
+
+/* Liked state */
+.liked {
+  color: red; /* Change color to indicate 'liked' state */
+  outline: none;
+}
+
+#like-button:focus {
+  outline: none; /* Remove outline on focus */
+}
+
+/* Optional: Remove outline when the button is active/pressed */
+#like-button:active {
+  outline: none; /* Remove outline on active state */
+}
+
 

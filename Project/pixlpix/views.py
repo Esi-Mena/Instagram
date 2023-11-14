@@ -11,6 +11,9 @@ from .forms import PhotoUploadForm, CommentForm, LoginForm
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import SignupForm
+from django.http import JsonResponse
+from django.db.models import Count
+
 
 from .models import Photo
 from .forms import PhotoEditForm
@@ -53,7 +56,7 @@ def signup_view(request):
 
 def home(request):
     # Retrieve photos and other data here
-    photos = Photo.objects.all().order_by('-id')  
+    photos = Photo.objects.annotate(comment_count=Count('comment')).order_by('-id')  
     context = {'photos': photos}
     return render(request, 'base2.html', context)
 
@@ -90,7 +93,7 @@ def upload_photo(request):
             photo = form.save(commit=False)
             photo.user = request.user
             photo.save()
-            messages.success(request, 'Photo uploaded successfully!')
+            messages.success(request, 'Photo/Video uploaded successfully!')
             return redirect('home')
     else:
         form = PhotoUploadForm()
@@ -139,6 +142,17 @@ def unlike_photo(request, photo_id):
 
     # Redirect back to the photo detail page or another appropriate URL
     return redirect('photo_detail', photo_id=photo_id)
+
+def like_unlike_post(request, photo_id):
+    if request.method == 'POST':
+        photo = get_object_or_404(Photo, pk=photo_id)
+        if request.user in photo.likes.all():
+            photo.likes.remove(request.user)
+            liked = False
+        else:
+            photo.likes.add(request.user)
+            liked = True
+        return JsonResponse({"liked": liked, "likes_count": photo.likes.count()})
 
 @login_required
 def follow_user(request, username):

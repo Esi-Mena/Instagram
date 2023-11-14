@@ -28,7 +28,7 @@ class SignupForm(UserCreationForm):
 class PhotoUploadForm(forms.ModelForm):
     class Meta:
         model = Photo
-        fields = ['image', 'caption']
+        fields = ['image', 'video', 'caption']
         widgets = {
             'caption': forms.Textarea(attrs={
                 'placeholder': 'Add a caption...',

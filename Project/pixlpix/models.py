@@ -16,13 +16,17 @@ class UserProfile(models.Model):
 # Photo Model
 class Photo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='photos/')
+    image = models.ImageField(upload_to='photos/', null=True, blank=True)
+    video = models.FileField(upload_to='videos/', null=True, blank=True)  # New field for videos
     caption = models.TextField(default='')
-    created_at = models.DateTimeField(auto_now_add=True)  # Automatically set the creation timestamp
+    created_at = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_photos', blank=True)
    
     def __str__(self):
         return f"Photo by {self.user.username}"
+
+    def is_video(self):
+        return self.video is not None
 
 # Comment Model
 class Comment(models.Model):

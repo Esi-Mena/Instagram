@@ -164,6 +164,9 @@ STATIC_ROOT = 'static_assets/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+# Set a higher file size limit for uploads MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 200  # In bytes
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
