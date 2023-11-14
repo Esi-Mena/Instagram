@@ -1,247 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% load static %}
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Insta Clone - Final</title>
-    
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-    />
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Flowbite CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.css" rel="stylesheet" />
-    <link href="/static/styles.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'base2.css' %}" />
-  </head>
-  <body class="{% if not user.is_authenticated %}bg-dark text-light{% endif %}">
-    {% if user.is_authenticated %}
-    <!-- sidebar starts -->
-    <div class="sidebar">
-      <a href="{% url 'home' %}">
-       <img src="{% static 'img/logo3.png' %}" alt="Logo" class="sidebar-logo" />
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insta Clone - Final</title>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- Flowbite CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.css" rel="stylesheet" />
+  <link href="/static/styles.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'base2.css' %}" />
+</head>
+
+<body class="{% if not user.is_authenticated %}bg-dark text-light{% endif %}">
+  {% if user.is_authenticated %}
+  <!-- sidebar starts -->
+  <div class="sidebar">
+    <a href="{% url 'home' %}">
+      <img src="{% static 'img/logo3.png' %}" alt="Logo" class="sidebar-logo" />
+    </a>
+    <div class="sidebarOption{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
+      <a href="{% url 'home' %}" class="sidebarOption__link">
+        <span class="material-icons">home</span>
+        <h2>Home</h2>
       </a>
-      <div class="sidebarOption{% if request.resolver_match.url_name == 'home' %} active{% endif %}">
-        <a href="{% url 'home' %}" class="sidebarOption__link">
-            <span class="material-icons">home</span>
-            <h2>Home</h2>
-        </a>
-      </div>
+    </div>
 
-      <div class="sidebarOption{% if request.resolver_match.url_name == 'explore' %} active{% endif %}">
-        <a href="{% url 'search_profiles' %}" class="sidebarOption__link">
-          <span class="material-icons">search</span>
-          <h2>Search</h2>
-        </a>
-      </div>        
+    <div class="sidebarOption{% if request.resolver_match.url_name == 'explore' %} active{% endif %}">
+      <a href="{% url 'search_profiles' %}" class="sidebarOption__link">
+        <span class="material-icons">search</span>
+        <h2>Search</h2>
+      </a>
+    </div>
 
-      <div class="sidebarOption{% if request.resolver_match.url_name == 'messages' %} active{% endif %}">
-        <a href="{% url 'follow_list' username=user.username %}" class="sidebarOption__link">
-            <span class="material-icons">group</span>
-            <h2>Following</h2>
-        </a>
-      </div>
+    <div class="sidebarOption{% if request.resolver_match.url_name == 'messages' %} active{% endif %}">
+      <a href="{% url 'following_feed' %}" class="sidebarOption__link">
+        <span class="material-icons">group</span>
+        <h2>Following</h2>
+      </a>
+    </div>
 
-      <div class="sidebarOption{% if request.resolver_match.url_name == 'bookmarks' %} active{% endif %}">
-        <a href="{% url 'user_profile' request.user.username %}" class="sidebarOption__link">
-            <span class="material-icons">account_circle</span>
-            <h2>Profile</h2>
-        </a>
-      </div>
+    <div class="sidebarOption{% if request.resolver_match.url_name == 'bookmarks' %} active{% endif %}">
+      <a href="{% url 'user_profile' request.user.username %}" class="sidebarOption__link">
+        <span class="material-icons">account_circle</span>
+        <h2>Profile</h2>
+      </a>
+    </div>
 
-      
 
-      <button class="sidebar__tweet" onclick="location.href='{% url 'upload_photo' %}';">Post</button>
 
-      <div class="footer-dropdown">
-        <div class="flex justify-center px-4 pt-4">
-            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-800 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-sm p-1.5" type="button">
-                <span class="sr-only">Open dropdown</span>
-                <!-- Bars icon SVG -->
-                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M0 3h20v2H0zM0 9h20v2H0zM0 15h20v2H0z"></path>
-                </svg>
-            </button>
-            <!-- Dropdown menu with white border -->
-            <div id="dropdown" class="z-10 hidden text-base list-none bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow w-44">
-                <ul class="py-2" aria-labelledby="dropdownButton">
-                    <li>
-                        <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'user_profile' request.user.username %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
-                    </li>
-                </ul>
-            </div>
+    <button class="sidebar__tweet" onclick="location.href='{% url 'upload_photo' %}';">Post</button>
+
+    <div class="footer-dropdown">
+      <div class="flex justify-center px-4 pt-4">
+        <button id="dropdownButton" data-dropdown-toggle="dropdown"
+          class="inline-block text-gray-800 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-lg text-sm p-1.5"
+          type="button">
+          <span class="sr-only">Open dropdown</span>
+          <!-- Bars icon SVG -->
+          <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M0 3h20v2H0zM0 9h20v2H0zM0 15h20v2H0z"></path>
+          </svg>
+        </button>
+        <!-- Dropdown menu with white border -->
+        <div id="dropdown"
+          class="z-10 hidden text-base list-none bg-white border border-gray-200 divide-y divide-gray-200 rounded-lg shadow w-44">
+          <ul class="py-2" aria-labelledby="dropdownButton">
+            <li>
+              <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</a>
+            </li>
+            <li>
+              <a href="{% url 'user_profile' request.user.username %}"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
+            </li>
+          </ul>
         </div>
-    </div>
-    
-
-    </div>
-    <!-- sidebar ends -->
-
+      </div>
     </div>
 
-    <!-- feed starts -->
-    <div class="feed">
-      <div class="stories-container-wrapper" style="position: relative;"> 
-        <button class="scroll-left"><</button>
-        <div class="stories-container">
-          {% for photo in photos %}
+
+  </div>
+  <!-- sidebar ends -->
+
+  </div>
+
+  <!-- feed starts -->
+  <div class="feed">
+    <div class="stories-container-wrapper" style="position: relative;">
+      <button class="scroll-left">
+        << /button>
+          <div class="stories-container">
+            {% for photo in photos %}
             <div class="story">
               <!-- Story content, keep your existing img tag here -->
               <a href="{% url 'user_profile' username=photo.user.username %}">
                 <!-- Use the user's profile picture if it exists, otherwise use a default image -->
                 {% if photo.user.userprofile.profile_picture %}
-                  <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" class="stories-img"/>
+                <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}"
+                  class="stories-img" />
                 {% else %}
-                  <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
+                <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
                 {% endif %}
               </a>
             </div>
-          {% endfor %}
-        </div>
-        <button class="scroll-right">></button>
-      </div>
-      <!-- post ends -->   
-   
-
-
-      <div class="feed__header"></div>
-      <!-- post starts -->
-      {% for photo in photos %}
-      <div class="post__avatar">
-        <!-- Wrap the image and the username in an anchor tag -->
-        <a href="{% url 'user_profile' username=photo.user.username %}">
-            <!-- Use the user's profile picture if it exists, otherwise use a default image -->
-            {% if photo.user.userprofile.profile_picture %}
-              <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" />
-            {% else %}
-             <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
-            {% endif %}
-        </a>
-    </div>
-      <div class="post">
-          <div class="post__body">
-                  <div class="post__headerText">
-                      <h3>
-                          <!-- Wrap the username in an anchor tag as well -->
-                          <a href="{% url 'user_profile' username=photo.user.username %}">
-                              {{ photo.user.username }}
-                              <!-- Include verification badge if needed -->
-                              <span class="post__headerSpecial">
-                                  <!-- You can use an if statement to check if the user is verified and then display this badge -->
-                                  <span class="material-icons post__badge">verified</span>
-                              </span>
-                          </a>
-                      </h3>
-                  </div>                 
-              <!-- Display the photo image -->
-              <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" />
-              
-              <div class="post__footer">
-                <div class="post__footerIcons">
-                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                      <span class="material-icons">favorite_border</span>
-                    </a>
-                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                      <span class="material-icons">chat_bubble_outline</span>
-                    </a>   
-                </div>
-                <p class="likes-count"> {{ photo.likes.count }} likes</p>
-                {% if request.user in photo.likes.all %}
-                <a href="{% url 'unlike_photo' photo_id=photo.id %} " style="color: white;">
-                    Unlike...
-                </a>
-                {% else %}
-                <a href="{% url 'like_photo' photo_id=photo.id %} " style="color: white;">
-                    Like!
-                </a>
-                {% endif %}
-
-                <section class="comments">
-                  {% for comment in comments %}
-                  <div class="comment">
-                      <p>{{ comment.user.username }}: {{ comment.text }}</p>
-                  </div>
-                  {% endfor %}
-              </section>   
-                <!-- Caption is outside the icons container, but still within the footer -->
-                <div class="post__footerCaptionsContainer">
-                  <p class="post__footerCaptionUser">
-                      <a href="{% url 'user_profile' username=photo.user.username %}">
-                          {{ photo.user.username }}
-                      </a>
-                  </p>
-                  <p class="post__footerCaptionText">
-                      {{ photo.caption }}
-                  </p>
-                  
-              </div>
-              <p class="post__footerCaptionb">
-                    <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                        View comments
-                    </a>
-              </p>
-              <p class="post__footerCaptionb">
-                <a href="{% url 'photo_detail' photo_id=photo.id %}">
-                  Add a comment...
-              </a>
-          </p>
-              </div>       
+            {% endfor %}
           </div>
+          <button class="scroll-right">></button>
     </div>
-      {% empty %}
-      <p></p>
-      {% endfor %}
-      <!-- post ends -->   
+    <!-- post ends -->
+
+
+
+    <div class="feed__header"></div>
+    <!-- post starts -->
+    {% for photo in photos %}
+    <div class="post__avatar">
+      <!-- Wrap the image and the username in an anchor tag -->
+      <a href="{% url 'user_profile' username=photo.user.username %}">
+        <!-- Use the user's profile picture if it exists, otherwise use a default image -->
+        {% if photo.user.userprofile.profile_picture %}
+        <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" />
+        {% else %}
+        <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
+        {% endif %}
+      </a>
+    </div>
+    <div class="post">
+      <div class="post__body">
+        <div class="post__headerText">
+          <h3>
+            <!-- Wrap the username in an anchor tag as well -->
+            <a href="{% url 'user_profile' username=photo.user.username %}">
+              {{ photo.user.username }}
+              <!-- Include verification badge if needed -->
+              <span class="post__headerSpecial">
+                <!-- You can use an if statement to check if the user is verified and then display this badge -->
+                <span class="material-icons post__badge">verified</span>
+              </span>
+            </a>
+          </h3>
+        </div>
+        <!-- Display the photo image -->
+        <img src="{{ photo.image.url }}" alt="{{ photo.caption }}" />
+
+        <div class="post__footer">
+          <div class="post__footerIcons">
+            <a href="{% url 'photo_detail' photo_id=photo.id %}">
+              <span class="material-icons">favorite_border</span>
+            </a>
+            <a href="{% url 'photo_detail' photo_id=photo.id %}">
+              <span class="material-icons">chat_bubble_outline</span>
+            </a>
+          </div>
+          <p class="likes-count"> {{ photo.likes.count }} likes</p>
+          {% if request.user in photo.likes.all %}
+          <a href="{% url 'unlike_photo' photo_id=photo.id %} " style="color: white;">
+            Unlike...
+          </a>
+          {% else %}
+          <a href="{% url 'like_photo' photo_id=photo.id %} " style="color: white;">
+            Like!
+          </a>
+          {% endif %}
+
+          <section class="comments">
+            {% for comment in comments %}
+            <div class="comment">
+              <p>{{ comment.user.username }}: {{ comment.text }}</p>
+            </div>
+            {% endfor %}
+          </section>
+          <!-- Caption is outside the icons container, but still within the footer -->
+          <div class="post__footerCaptionsContainer">
+            <p class="post__footerCaptionUser">
+              <a href="{% url 'user_profile' username=photo.user.username %}">
+                {{ photo.user.username }}
+              </a>
+            </p>
+            <p class="post__footerCaptionText">
+              {{ photo.caption }}
+            </p>
+
+          </div>
+          <p class="post__footerCaptionb">
+            <a href="{% url 'photo_detail' photo_id=photo.id %}">
+              View comments
+            </a>
+          </p>
+          <p class="post__footerCaptionb">
+            <a href="{% url 'photo_detail' photo_id=photo.id %}">
+              Add a comment...
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p></p>
+    {% endfor %}
+    <!-- post ends -->
     {% endif %}
 
 
 
     <!-- Main Content -->
     <main class="{% if user.is_authenticated %}main-content{% else %}container{% endif %}">
-        {% block content %}
-        <!-- Content for both authenticated and non-authenticated users will go here -->
-        {% endblock %}
+      {% block content %}
+      <!-- Content for both authenticated and non-authenticated users will go here -->
+      {% endblock %}
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- Include Masonry.js from a CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" ></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite/dist/flowbite.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-          var searchButton = document.getElementById('search-button-id'); // Replace with your actual button ID
-          if (searchButton) {
-            searchButton.addEventListener('click', function() {
-              // Your search button click handling logic
-            });
-          }
-        });
-        
+      document.addEventListener('DOMContentLoaded', (event) => {
+        var searchButton = document.getElementById('search-button-id'); // Replace with your actual button ID
+        if (searchButton) {
+          searchButton.addEventListener('click', function () {
+            // Your search button click handling logic
+          });
+        }
+      });
+
     </script>
 
     <script>
-      document.querySelector('.scroll-left').addEventListener('click', function() {
+      document.querySelector('.scroll-left').addEventListener('click', function () {
         const container = document.querySelector('.stories-container');
         container.scrollLeft -= 200; // Adjust the value as needed
       });
-      
-      document.querySelector('.scroll-right').addEventListener('click', function() {
+
+      document.querySelector('.scroll-right').addEventListener('click', function () {
         const container = document.querySelector('.stories-container');
         container.scrollLeft += 200; // Adjust the value as needed
       });
     </script>
-  </body>
+</body>
+
 </html>
