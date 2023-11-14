@@ -62,7 +62,7 @@ def following_view(request):
     current_user_profile = get_object_or_404(UserProfile, user=request.user)
     following_users = current_user_profile.following.all()
     photos = Photo.objects.filter(user__in=following_users).order_by('-id')
-    return render(request, 'home.html', {'photos': photos})
+    return render(request, 'base2.html', {'photos': photos})
 
 
 
