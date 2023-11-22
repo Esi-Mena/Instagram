@@ -9,29 +9,51 @@
 {% block content %}
 <div class="container mx-auto p-4">
     <div class="flex flex-wrap -mx-4 items-center"> <!-- Use flex and items-center to align items vertically -->
-        <div class="px-4 mb-4 md:mb-0">
+        <div class="mb-6">
             {% if user_profile.profile_picture %}
-            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="rounded-full w-32 h-32 mx-auto md:mx-0"> <!-- Remove flex-grow -->
+                <img src="{{ request.user.userprofile.profile_picture.url }}" alt="{{ request.user.username }}" class="rounded-full w-36 h-36" />
+            {% else %}
+                <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="rounded-full w-36 h-36" />
             {% endif %}
         </div>
+
         <div class="px-4 flex-grow">
-            <h1 class="text-2xl font-bold">{{ user_profile.user.username }}</h1>
-            <p class="text-gray-600">{{ user_profile.user.email }}</p>
-            <p class="text-gray-600">{{ user_profile.bio }}</p>
+            {% if is_own_profile %}
+                <div class="username-edit-button">
+                    <h1 class="text-2xl font-bold">{{ user_profile.user.username }}</h1>
+                    <a href="{% url 'edit_profile' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Edit Profile</a>
+                </div>
+            {% endif %}
+            
+             <!--<p class="text-gray-600">{{ user_profile.user.email }}</p>-->
+            
+             <!--<p class="text-gray-600">{{ user_profile.bio }}</p>-->
+
             <div>
                 {% if is_own_profile %}
-                <a href="{% url 'edit_profile' %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Edit Profile</a>
                 {% else %}
-                {% if request.user in user_profile.followers.all %}
-                <a href="{% url 'unfollow_user' username=user_profile.user.username%}"class='btn btn-primary'>Unfollow</a>
-                {% else %}
-                <a href="{% url 'follow_user' username=user_profile.user.username %}" class='btn btn-primary'>Follow</a>
-                {% endif %}
-                {% endif %}
-               <p>
-                <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers: {{user_profile.followers.count }}</a>
+                <div class="username-edit-button">
+                    <h1 class="text-2xl font-bold">{{ user_profile.user.username }}</h1>
+                    {% if request.user in user_profile.followers.all %}
+                    
+                    <a href="{% url 'unfollow_user' username=user_profile.user.username%}"class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Unfollow</a>
+                    {% else %}
+                    <a href="{% url 'follow_user' username=user_profile.user.username %}" class="px-3 py-2 text-xs font-medium text-center text-white bg-black rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-500 dark:focus:ring-gray-600">Follow</a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+                {% if is_own_profile %}
+                <p class="followers_count1">
+                    <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers: {{user_profile.followers.count }}</a>
                 </p>
+                {% else %}
+                <div class="followers_count2">
+                    <p class="text-gray-600">{{ user_profile.user.email }}</p>
+                    <p class="text-gray-600">{{ user_profile.bio }}</p>
+                </div>
+                {% endif %}
             </div>
+            
         </div>
     </div>
 

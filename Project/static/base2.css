@@ -425,7 +425,7 @@ margin: 0; /* Remove margin if you want them to be closer */
 }
 
 .footer-dropdown {
-  margin-top: 100px;
+  margin-top: 200px;
   margin-left: -125px;
 }
 
@@ -480,6 +480,43 @@ margin: 0; /* Remove margin if you want them to be closer */
 /* Optional: Remove outline when the button is active/pressed */
 #like-button:active {
   outline: none; /* Remove outline on active state */
+}
+
+.username-edit-button {
+  display: flex;
+  align-items: center; /* Vertically center the items */
+  padding: 10px;
+  /* You can add more styling here if needed */
+}
+.username-edit-button h1 {
+  margin-right: 10px; /* Add right margin to the username */
+}
+.followers_count1{
+  margin-left: 10px;
+}
+
+.followers_count2{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.table-container {
+  width: 40%; /* Set the width to half of its parent */
+  /*margin: 0 auto;  Center the table container */
+  margin-left: 0; /* Align to the left */
+  margin-right: auto; /* Keep the right margin automatic */
+  margin-top: 20px;
+}
+
+.follow_table {
+  display: flex;
+  align-items: center; /* Vertically center the items */
+}
+
+.follow_h2{
+  margin-top: 10px;
+}
+.follow_h3{
+  align-items: center;
 }
 
 

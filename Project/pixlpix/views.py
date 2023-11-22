@@ -57,7 +57,8 @@ def signup_view(request):
 def home(request):
     # Retrieve photos and other data here
     photos = Photo.objects.annotate(comment_count=Count('comment')).order_by('-id')  
-    context = {'photos': photos}
+    unique_users = User.objects.filter(photo__in=photos).distinct()
+    context = {'photos': photos, 'unique_users': unique_users}
     return render(request, 'base2.html', context)
 
 @login_required

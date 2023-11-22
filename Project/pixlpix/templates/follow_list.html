@@ -1,28 +1,105 @@
 {% extends 'base2.html' %}
+{% load static %}
 
 {% block content %}
 {% if user.is_authenticated %}
-<h2>Followers</h2>
-<ul class="list-group">
-    {% for follower in followers %}
-    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follower.username %}">
-            {{follower }}</a></li>
-    </li>
-    {% empty %}
-    <p>No followers yet.</p>
-    {% endfor %}
-</ul>
 
-<h2>Following</h2>
-<ul class="list-group">
-    {% for follow in following %}
-    <li class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follow.username %}">
-            {{follow}}</a></li>
-    </li>
-    {% empty %}
-    <p>Not following anyone yet.</p>
-    {% endfor %}
-</ul>
+<div class="follow_h2">
+    <p class="text-lg font-medium text-gray-900 dark:text-white">Followers and Following</p>
+</div>
+
+<div class="follow_table">
+     <!-- Following table-->
+    <div class="table-container">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">      
+            </div>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="p-4"></th>
+                        <th scope="col" class="px-6 py-3">
+                            Following
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for follow in following %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="w-4 p-4"></td>
+                        <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                            {% if photo.user.userprofile.profile_picture %}
+                                <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" />
+                            {% else %}
+                                <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
+                            {% endif %}
+                            
+                            <div class="ps-3">
+                                <div class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follow.username %}">{{follow}}</a></div>
+                            </div>  
+                        </th>
+                        
+                        {% empty %}
+                        <p>Not following anyone yet</p>
+                        {% endfor %}
+                        
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Followers table-->
+    <div class="table-container">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="flex items-center justify-between flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">      
+            </div>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="p-4"></th>
+                        <th scope="col" class="px-6 py-3">
+                            Followers
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for follower in followers %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="w-4 p-4"></td>
+                        <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">                 
+                                {% if photo.user.userprofile.profile_picture %}
+                                <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" />
+                                {% else %}
+                                    <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
+                                {% endif %}
+                            <div class="ps-3">
+                                <div class="list-group-item list-group-item-dark"><a href="{% url 'user_profile' username=follow.username %}">{{follow}}</a></div>
+                            </div>  
+                        </th>
+                        
+                        {% empty %}
+                        <div class="follow_h3">
+                            <p>No followers yet</p>
+                        </div>
+                        {% endfor %}
+                        
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 {% else %}
 <p>
     If you have an account, <a href="{% url 'login' %}">Log In</a>.<br>

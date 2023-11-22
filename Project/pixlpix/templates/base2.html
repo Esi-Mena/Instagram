@@ -37,21 +37,21 @@
           </a>
         </div>
 
-        <div class="sidebarOption{% if request.resolver_match.url_name == 'explore' %} active{% endif %}">
+        <div class="sidebarOption{% if request.resolver_match.url_name == 'search_profiles' %} active{% endif %}">
           <a href="{% url 'search_profiles' %}" class="sidebarOption__link">
             <span class="material-icons">search</span>
             <h2>Search</h2>
           </a>
         </div>        
 
-        <div class="sidebarOption{% if request.resolver_match.url_name == 'messages' %} active{% endif %}">
-          <a href="{% url 'following_feed' %}" class="sidebarOption__link">
+        <div class="sidebarOption{% if request.resolver_match.url_name == 'following_feed' %} active{% endif %}">
+          <a href="{% url 'follow_list' username=user.username %}" class="sidebarOption__link">
               <span class="material-icons">group</span>
               <h2>Following</h2>
           </a>
         </div>
 
-        <div class="sidebarOption{% if request.resolver_match.url_name == 'bookmarks' %} active{% endif %}">
+        <div class="sidebarOption{% if request.resolver_match.url_name == 'user_profile' %} active{% endif %}">
           <a href="{% url 'user_profile' request.user.username %}" class="sidebarOption__link">
               <span class="material-icons">account_circle</span>
               <h2>Profile</h2>
@@ -94,26 +94,23 @@
         <!-- Stories start -->   
         <div class="stories-container-wrapper" style="position: relative;"> 
           {% if request.resolver_match.url_name == 'home' %}
-          <!-- Render the scroll buttons only on the home page -->
-            <button class="scroll-left"><</button>
+              <button class="scroll-left"><</button>
           {% endif %}
           <div class="stories-container">
-            {% for photo in photos %}
-              <div class="story">
-                <!-- Story content, keep your existing img tag here -->
-                <a href="{% url 'user_profile' username=photo.user.username %}">
-                  <!-- Use the user's profile picture if it exists, otherwise use a default image -->
-                  {% if photo.user.userprofile.profile_picture %}
-                    <img src="{{ photo.user.userprofile.profile_picture.url }}" alt="{{ photo.user.username }}" class="stories-img"/>
-                  {% else %}
-                    <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
-                  {% endif %}
-                </a>
-              </div>
-            {% endfor %}
+              {% for user in unique_users %}
+                  <div class="story">
+                      <a href="{% url 'user_profile' username=user.username %}">
+                          {% if user.userprofile.profile_picture %}
+                              <img src="{{ user.userprofile.profile_picture.url }}" alt="{{ user.username }}" class="stories-img"/>
+                          {% else %}
+                              <img src="{% static 'img/ProfileFF.jpg' %}" alt="Default Profile" class="stories-img">
+                          {% endif %}
+                      </a>
+                  </div>
+              {% endfor %}
           </div>
           {% if request.resolver_match.url_name == 'home' %}
-            <button class="scroll-right">></button>
+              <button class="scroll-right">></button>
           {% endif %}
         </div>
         <!-- Stories end -->   

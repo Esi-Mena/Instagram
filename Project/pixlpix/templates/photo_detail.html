@@ -18,15 +18,7 @@
               {% endif %}
             <p>{{ photo.caption }}</p>
             <p>Likes: {{ photo.likes.count }}</p>
-            {% if request.user in photo.likes.all %}
-            <a href="{% url 'unlike_photo' photo_id=photo.id %} " class="btn btn-dark">
-                Unlike
-            </a>
-            {% else %}
-            <a href="{% url 'like_photo' photo_id=photo.id %} " class="btn btn-dark">
-                Like!
-            </a>
-            {% endif %}
+            
             <!-- Add like and comment buttons -->
         </div>
         <section class="comments">
