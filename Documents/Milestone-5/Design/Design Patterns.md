@@ -1,4 +1,4 @@
-# Documentation: MVC Pattern Implementation in Django Instagram Clone
+# Documentation: Design Patterns:MVC Pattern Implementation in Django Instagram Clone
 
 ## Overview
 
