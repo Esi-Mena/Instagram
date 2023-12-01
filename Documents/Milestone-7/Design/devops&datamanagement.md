@@ -21,5 +21,19 @@ Level 3 - issues should be fixed within a few days but development should still 
 Level 2 - issues should be fixed as soon as possible but development should still proceed but be slowed in order to fix the issue. 
 
 Level 1 - Development should halt and devlopers should only work to fix the issue until it is resolved. 
-## Conclusion 
-Developers should follow these guidelines as best practice when developing pixlpix. 
+## Scaling
+The project is on digital ocean which is scalable. When volume on the website increases we can increase the amount of resources needed from digital ocean. When more sever space is needed the digital ocean tier can be uprgraded, as with the speed of the server.
+# Data Management
+This section will be on the data management for pixlpix.
+## Types of Data collected
+Most of the data from users that will be saved is whatever the user posts to their profile. Things such as posts, captions, comments, and profile pictures are the data that we will save from the user as it is neccesary for the app to be funcitonal. Therefore the main data type that we will have is images, along with some text and user information (email, name, info they use when they create the account).
+## Data Collection Methods
+All the data we currently collect will be collected by forms. Forms are currently the only way that pixlpix gets data from its user. Pixlpix does not collect anything from the user that the user does not upload to the site. 
+## User Consent
+There will be a user consent form created allowing the user to agree to our data collection when they create an account on the site. Since the only data that is kept on users is to keep the core features of the site working, if the user does not accept they will not be able to create an account. 
+## Data Storage
+A storage space on digital ocean will be created. This storage space will contain all images uploaded to the website, such as profile pictures and posts. All other user information such as account name,email, comments, captions and such will be kept in the database.  
+## Data Backups
+A script will be created to automatically backup all data to a local location on set intervals. This is in the case that the storage space and database have an error, the pixlpix team can rollback to the latest backup to keep the user experience positive. 
+## Data Access/Governance
+PixlPix owns all of the data uploaded to the site. Pixlpix will not sell this data to anyone else and intends to only use it to better the user experience. Pixlpix and digital ocean are the only companies that will be able to see your data. The data will be public on the pixlpix website unless a post is deleted. However pixlpix will still have the image from the post, but it will no longer be publicly accessible from the internet. 
