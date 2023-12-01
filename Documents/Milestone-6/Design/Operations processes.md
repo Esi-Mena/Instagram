@@ -1,4 +1,4 @@
-# Documentation: Design operations processes:Automated Testing Framework in Django Instagram Clone
+# Documentation: Design operations processes:Automated Testing Framework
 
 ## Overview
 This documentation outlines the implementation of an automated testing framework in the Django Instagram clone app. Automated testing is crucial for ensuring application reliability and code quality, especially as the application scales and evolves.
