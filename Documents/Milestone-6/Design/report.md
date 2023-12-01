@@ -4,8 +4,12 @@
 
 ## Challenges
 
-
+-
 
 ## Time Spent
 
+-
+
 ## Video 
+
+- 
