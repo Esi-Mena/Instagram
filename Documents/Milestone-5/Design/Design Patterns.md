@@ -2,7 +2,7 @@
 
 ## Overview
 
-This documentation describes the implementation of the MVC (Model-View-Controller) pattern in the Django Instagram clone app. Django inherently follows a Model-View-Template (MVT) pattern, which aligns closely with MVC. In our implementation, we have focused on enhancing this alignment by clearly separating the concerns of models, views, and templates.
+This documentation describes the implementation of the MVC (Model-View-Controller) pattern. Django inherently follows a Model-View-Template (MVT) pattern, which aligns closely with MVC. In our implementation, we have focused on enhancing this alignment by clearly separating the concerns of models, views, and templates.
 
 ## Models (Data Handling)
 
@@ -66,7 +66,7 @@ The refinement process involved reviewing and updating the views.py file to ensu
 
 ## Conclusion
 
-The implementation of the MVC pattern in the Django Instagram clone app provides a clear separation of concerns, aligning with Django's architectural best practices. This structure enhances the application's maintainability and scalability, making future developments and modifications more manageable.
+The implementation of the MVC pattern in our app provides a clear separation of concerns, aligning with Django's architectural best practices. This structure enhances the application's maintainability and scalability, making future developments and modifications more manageable.
 
 
 
