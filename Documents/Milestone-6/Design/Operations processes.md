@@ -1,7 +1,7 @@
 # Documentation: Design operations processes:Automated Testing Framework
 
 ## Overview
-This documentation outlines the implementation of an automated testing framework in the Django Instagram clone app. Automated testing is crucial for ensuring application reliability and code quality, especially as the application scales and evolves.
+This documentation outlines the implementation of an automated testing framework. Automated testing is crucial for ensuring application reliability and code quality, especially as the application scales and evolves.
 
 ## Automated Testing Implementation
 
@@ -64,7 +64,7 @@ This documentation outlines the implementation of an automated testing framework
 - This setup ensures that every code change is automatically tested, maintaining code quality and reducing the risk of introducing bugs.
 
 ## Conclusion
-- The implementation of an automated testing framework significantly enhances the reliability and maintainability of our Django Instagram clone app.
+- The implementation of an automated testing framework significantly enhances the reliability and maintainability of our app.
 - It provides a robust mechanism to swiftly identify and address issues.
 - This ensures that new features and changes do not adversely affect existing functionalities, maintaining a high standard of quality for the application.
 
