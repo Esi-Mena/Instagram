@@ -2,7 +2,7 @@
 # Documentation: Defining database management policy and practices 
 
 ## Overview
-This documentation details the implementation of a key database management policy focusing on Data Integrity and Validation in the Django Instagram clone app. The goal is to ensure the reliability and consistency of the data within our application.
+This documentation details the implementation of a key database management policy focusing on Data Integrity and Validation. The goal is to ensure the reliability and consistency of the data within our application.
 
 ## Data Integrity and Validation Implementations
 
@@ -55,7 +55,7 @@ This documentation details the implementation of a key database management polic
 ### 4. `Like` Model - Unique Together Constraint
 - **Objective**: Prevent multiple likes on the same photo by a user.
 - **Details**:
-  - Unique together constraint on user and photo fields.
+  - Unique constraint on user and photo fields.
 
     ```python
     class Like(models.Model):
