@@ -45,6 +45,8 @@
                 {% if is_own_profile %}
                 <p class="followers_count1">
                     <a href="{% url 'follow_list' username=user_profile.user.username %}" class='btn btn-dark'>Followers: {{user_profile.followers.count }}</a>
+                    <p class="text-gray-600">{{ user_profile.user.email }}</p>
+                    <p class="text-gray-600">{{ user_profile.bio }}</p>
                 </p>
                 {% else %}
                 <div class="followers_count2">

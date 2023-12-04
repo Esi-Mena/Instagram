@@ -44,7 +44,7 @@
           </a>
         </div>        
 
-        <div class="sidebarOption{% if request.resolver_match.url_name == 'following_feed' %} active{% endif %}">
+        <div class="sidebarOption{% if request.resolver_match.url_name == 'follow_list' %} active{% endif %}">
           <a href="{% url 'follow_list' username=user.username %}" class="sidebarOption__link">
               <span class="material-icons">group</span>
               <h2>Following</h2>
@@ -76,7 +76,7 @@
                   <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log Out</a>
                 </li>
                 <li>
-                  <a href="{% url 'user_profile' request.user.username %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
+                  <a href="{% url 'edit_profile' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit Profile</a>
                 </li>
               </ul>
             </div>
