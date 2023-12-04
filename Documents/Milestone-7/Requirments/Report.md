@@ -13,6 +13,8 @@ I have created a Product Upgrade where i went through our website Pixlpix and st
   8 hours
 
 - 5 Min Video
+  https://youtu.be/uAWLf4APeSs
+  
 
   
   
