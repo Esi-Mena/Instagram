@@ -98,7 +98,7 @@ def upload_photo(request):
             return redirect('home')
     else:
         form = PhotoUploadForm()
-    
+
     context = {'form': form}
     return render(request, 'upload_photo.html', context)
 

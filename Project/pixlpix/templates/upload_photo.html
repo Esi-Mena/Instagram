@@ -13,14 +13,14 @@
 
             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <img id="preview" src="" alt="Preview">
                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <!-- SVG Path -->
                     </svg>
                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, GIF or MP4 (MAX. 800x400px)</p>
                 </div>
-                <input id="dropzone-file" type="file" name="image" class="hidden" accept="image/*,video/*" />
-                <input id="dropzone-file" type="file" name="photo" class="hidden" accept="video/*,image/*" />
+                <input id="dropzone-file" type="file" name="image" class="hidden" accept="image/*,video/*" onchange="previewFile()" />
             </label>
 
             <!-- Caption Field -->
@@ -37,12 +37,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Submit Button 
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary">Upload</button>
-            </div>
-            -->
         </form>
     </section>
 </main>
@@ -52,5 +46,31 @@
     If you don't have an account, <a href="{% url 'signup' %}">Sign Up</a>.
 </p>
 {% endif %}
+
+<style>
+    #preview {
+        max-width: 100%;
+        max-height: 30%;
+        display: none;
+    }
+</style>
+
+<script>
+    function previewFile() {
+        const preview = document.querySelector('#preview');
+        const file = document.querySelector('#dropzone-file').files[0];
+        const reader = new FileReader();
+    
+        reader.addEventListener("load", function () {
+            // convert image file to base64 string
+            preview.src = reader.result;
+            preview.style.display = "block";
+        }, false);
+    
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+    </script>
 
 {% endblock %}

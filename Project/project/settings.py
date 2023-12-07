@@ -99,6 +99,9 @@ POSTGRES_USER = environ.get("POSTGRES_USER")  # database username
 POSTGRES_HOST = environ.get("POSTGRES_HOST")  # database host
 POSTGRES_PORT = environ.get("POSTGRES_PORT")  # database port
 
+print(f"DB: {POSTGRES_DB}, Password: {POSTGRES_PASSWORD}")
+print(f"User: {POSTGRES_USER}, Host: {POSTGRES_HOST}, Port: {POSTGRES_PORT}")
+
 POSTGRES_READY = (
     POSTGRES_DB is not None
     and POSTGRES_PASSWORD is not None
@@ -118,6 +121,8 @@ if POSTGRES_READY:
             "PORT": POSTGRES_PORT,
         }
     }
+else:
+    print("Postgres not ready. Check your environment variables.")
 
 
 
